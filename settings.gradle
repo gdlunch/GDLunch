@@ -1,4 +1,5 @@
 rootProject.name = 'gd_lunch_brno'
 include 'web'
 include 'parser'
+include 'tools'
 
