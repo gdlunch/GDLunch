@@ -10,5 +10,10 @@ repositories {
 }
 
 dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web:1.5.6.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf:1.5.6.RELEASE")
+
+    compile project(':parser')
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
