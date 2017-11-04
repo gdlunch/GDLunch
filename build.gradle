@@ -13,7 +13,7 @@ repositories {
 }
 
 springBoot {
-    mainClass = "com.labuda.gd_lunch.web.WebMain"
+    mainClass = "com.labuda.gdlunch.web.WebMain"
 }
 
 dependencies {
