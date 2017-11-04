@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * Main starting class
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.labuda.gd_lunch")
 public class WebMain {
 
     /**

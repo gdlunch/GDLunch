@@ -1,8 +1,8 @@
 package com.labuda.gd_lunch.parser;
 
-import com.labuda.gd_lunch.DailyMenu;
-import com.labuda.gd_lunch.MenuItem;
-import com.labuda.gd_lunch.WeeklyMenu;
+import com.labuda.gd_lunch.entity.DailyMenu;
+import com.labuda.gd_lunch.entity.MenuItem;
+import com.labuda.gd_lunch.entity.WeeklyMenu;
 import com.labuda.gd_lunch.tools.WebAddressesConfig;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -33,7 +33,7 @@ public class AmphoneParser extends AbstractRestaurantWebParser implements Weekly
 
     @Override
     public WeeklyMenu parse() {
-        WeeklyMenu result = new WeeklyMenu();
+        WeeklyMenu result = new WeeklyMenu("Amphone");
 
         try {
             Document document = Jsoup.connect(webAddress).get();
@@ -52,7 +52,7 @@ public class AmphoneParser extends AbstractRestaurantWebParser implements Weekly
                     dailyMenu.getMenu().add(new MenuItem(item.substring(0, item.length() - 5), parsePrice(course.text())));
                 }
 
-                result.addMenuDay(dailyMenu);
+                result.addDailyMenu(dailyMenu);
             }
         } catch (IOException e) {
             log.error("Parsing failed", e);
@@ -62,11 +62,12 @@ public class AmphoneParser extends AbstractRestaurantWebParser implements Weekly
     }
 
     /**
-     * Helper method to parse price from item
+     * Helper method to parse price from menu item
+     *
      * @param item item on the menu
      * @return price as float
      */
-    private float parsePrice(String item) {
+    private Float parsePrice(String item) {
         item = item.trim();
         String cropped = item.substring(item.length() - 5, item.length() - 2);
         return Float.parseFloat(cropped.trim());

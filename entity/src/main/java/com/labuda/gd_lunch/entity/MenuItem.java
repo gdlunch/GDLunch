@@ -1,17 +1,20 @@
-package com.labuda.gd_lunch;
+package com.labuda.gd_lunch.entity;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.persistence.*;
 
 /**
  * Single menu item
  */
+@Entity
+@Table(name = "menu_item")
 public class MenuItem {
 
     /**
-     * Logger
+     * Database ID
      */
-    private final static Logger log = LoggerFactory.getLogger(MenuItem.class);
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     /**
      * Name of the item
@@ -21,7 +24,7 @@ public class MenuItem {
     /**
      * Price
      */
-    private float price;
+    private Float price;
 
     /**
      * Constructor
@@ -39,7 +42,10 @@ public class MenuItem {
     public MenuItem(String name, float price) {
         this.name = name;
         this.price = price;
-        log.trace("Created MenuItem with name=[" + name + "] and price=[" + price + "]");
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -50,11 +56,11 @@ public class MenuItem {
         this.name = name;
     }
 
-    public float getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 

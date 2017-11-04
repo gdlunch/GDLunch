@@ -1,5 +1,8 @@
-package com.labuda.gd_lunch;
+package com.labuda.gd_lunch.entity;
 
+import org.hibernate.annotations.Cascade;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,29 +10,30 @@ import java.util.List;
 /**
  * This class represents menu for a single day
  */
+@Entity
+@Table(name = "dailyMenu")
 public class DailyMenu {
 
-    /** Date */
+    /**
+     * Database ID
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    /**
+     * Date
+     */
     private LocalDate date;
 
-    /** List of courses on the menu on specific day */
+    /**
+     * List of courses on the menu on specific day
+     */
+    @OneToMany(cascade = CascadeType.ALL)
     private List<MenuItem> menu = new ArrayList<>();
 
-    /**
-     * Constructor
-     */
-    public DailyMenu() {
-
-    }
-
-    /**
-     * Constructor
-     * @param date date
-     * @param menu menu
-     */
-    public DailyMenu(LocalDate date, List<MenuItem> menu) {
-        this.date = date;
-        this.menu = menu;
+    public Long getId() {
+        return id;
     }
 
     public LocalDate getDate() {

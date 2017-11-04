@@ -1,7 +1,11 @@
 # Folders
 .idea/
 .gradle/
+out/
 build/
+
+# macOS
+*.DS_Store
 
 # Compiled class file
 *.class

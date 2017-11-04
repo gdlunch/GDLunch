@@ -1,12 +1,19 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '1.5.8.RELEASE'
+}
+
 group 'com.labuda'
 version '1.0-SNAPSHOT'
-
-apply plugin: 'java'
 
 sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+}
+
+springBoot {
+    mainClass = "com.labuda.gd_lunch.web.WebMain"
 }
 
 dependencies {

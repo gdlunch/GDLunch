@@ -1,6 +1,6 @@
 package com.labuda.gd_lunch.parser;
 
-import com.labuda.gd_lunch.WeeklyMenu;
+import com.labuda.gd_lunch.entity.WeeklyMenu;
 
 /**
  * Interface for parsing weekly menu

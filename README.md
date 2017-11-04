@@ -8,6 +8,10 @@ This is just a spare time project.
 
 Because why not.
 
+## Database backend
+
+Project is currently tested only on locally deployed MySQL 5.7.20 Community Edition.
+
 ## How to build with Gradle
 
 This project is using Gradle Wrapper.
