@@ -10,11 +10,20 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
+/**
+ * Menu item service implementation
+ */
 @Service
 public class MenuItemServiceImpl implements MenuItemService {
 
+    /**
+     * Logger
+     */
     private final static Logger log = LoggerFactory.getLogger(MenuItemServiceImpl.class);
 
+    /**
+     * Menu item repository
+     */
     @Resource
     private MenuItemRepository menuItemRepository;
 

@@ -10,6 +10,7 @@ public interface WeeklyMenuRepository extends JpaRepository<WeeklyMenu, Long> {
 
     /**
      * Finds weekly menu by restaurant name
+     *
      * @param restaurantName restaurant name
      * @return corresponding weekly menu
      */

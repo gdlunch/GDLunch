@@ -10,11 +10,20 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
+/**
+ * Daily menu service implementation
+ */
 @Service
 public class DailyMenuServiceImpl implements DailyMenuService {
 
+    /**
+     * Logger
+     */
     private final static Logger log = LoggerFactory.getLogger(DailyMenuServiceImpl.class);
 
+    /**
+     * Daily menu repository
+     */
     @Resource
     private DailyMenuRepository dailyMenuRepository;
 

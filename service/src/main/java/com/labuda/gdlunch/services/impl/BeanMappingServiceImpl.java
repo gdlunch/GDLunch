@@ -15,6 +15,9 @@ import java.util.List;
 @Service
 public class BeanMappingServiceImpl implements BeanMappingService {
 
+    /**
+     * Mapper
+     */
     @Autowired
     private Mapper dozer;
 
@@ -29,7 +32,7 @@ public class BeanMappingServiceImpl implements BeanMappingService {
 
     @Override
     public <T> T mapTo(Object u, Class<T> mapToClass) {
-        return dozer.map(u,mapToClass);
+        return dozer.map(u, mapToClass);
     }
 
     @Override

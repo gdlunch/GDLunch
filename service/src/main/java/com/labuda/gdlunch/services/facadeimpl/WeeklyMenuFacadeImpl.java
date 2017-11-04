@@ -10,13 +10,23 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+
+/**
+ * Weekly menu facade implementation
+ */
 @Service
 @Transactional
 public class WeeklyMenuFacadeImpl implements WeeklyMenuFacade {
 
+    /**
+     * Weekly menu service
+     */
     @Autowired
     private WeeklyMenuService weeklyMenuService;
 
+    /**
+     * Mapper
+     */
     @Autowired
     private BeanMappingService beanMappingService;
 

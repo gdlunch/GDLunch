@@ -11,9 +11,11 @@ import java.util.List;
 @Table(name = "weekly_menu")
 public class WeeklyMenu {
 
+    /**
+     * Database ID
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    /** Database ID */
     private Long id;
 
     /**

@@ -32,10 +32,23 @@ public abstract class Config {
         properties.load(new FileInputStream(filePath));
     }
 
+    /**
+     * Gets a simple String from configuration
+     *
+     * @param key property name
+     * @return found value, null otherwise
+     */
     public String getString(String key) {
         return properties.getProperty(key);
     }
 
+    /**
+     * Gets a simple String from configuration
+     *
+     * @param key          property name
+     * @param defaultValue default value
+     * @return found value, default value otherwise
+     */
     public String getString(String key, String defaultValue) {
         return properties.getProperty(key, defaultValue);
     }

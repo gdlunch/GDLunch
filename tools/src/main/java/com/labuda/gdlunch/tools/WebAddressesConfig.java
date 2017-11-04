@@ -5,6 +5,9 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
+/**
+ * Configuration of web addresses for restaurant pages
+ */
 public class WebAddressesConfig extends Config {
 
     /**

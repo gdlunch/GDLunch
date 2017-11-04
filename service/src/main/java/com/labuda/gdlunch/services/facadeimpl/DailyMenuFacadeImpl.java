@@ -5,10 +5,11 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+/**
+ * Daily menu facade implementation
+ */
 @Service
 @Transactional
 public class DailyMenuFacadeImpl implements DailyMenuFacade {
-
-
 
 }

@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-    compile project(":")
+    compile project(':')
 
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
     compile group: 'mysql', name: 'mysql-connector-java'

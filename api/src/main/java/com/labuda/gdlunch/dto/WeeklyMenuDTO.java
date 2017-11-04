@@ -19,7 +19,7 @@ public class WeeklyMenuDTO {
     private String restaurantName;
 
     /**
-     * Menu
+     * Menu for the week
      */
     private List<DailyMenuDTO> menu = new ArrayList<>();
 

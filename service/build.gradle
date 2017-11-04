@@ -15,7 +15,10 @@ repositories {
 
 dependencies {
 
-    compile project(":"), project(":api"), project(":persistence"), project(":entity")
+    compile project(':')
+    compile project(':api')
+    compile project(':persistence')
+    compile project(':entity')
 
     compile group: 'net.sf.dozer', name: 'dozer', version: '5.5.1'
     compile group: 'io.craftsman', name: 'dozer-jdk8-support', version: '1.0.3'
