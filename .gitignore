@@ -1,3 +1,5 @@
+apiKeys.properties
+
 # Folders
 .idea/
 .gradle/
