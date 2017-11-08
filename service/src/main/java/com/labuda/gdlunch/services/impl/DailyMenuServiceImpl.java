@@ -3,12 +3,13 @@ package com.labuda.gdlunch.services.impl;
 import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.repository.DailyMenuRepository;
 import com.labuda.gdlunch.services.DailyMenuService;
+import java.time.LocalDate;
+import java.util.List;
+import javax.annotation.Resource;
+import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
-import javax.transaction.Transactional;
 
 /**
  * Daily menu service implementation
@@ -61,5 +62,15 @@ public class DailyMenuServiceImpl implements DailyMenuService {
 
         dailyMenuRepository.save(dailyMenu);
         return dailyMenu;
+    }
+
+    @Override
+    public List<DailyMenu> findAll() {
+        return dailyMenuRepository.findAll();
+    }
+
+    @Override
+    public List<DailyMenu> findAllByDate(LocalDate date) {
+        return dailyMenuRepository.findByDate(date);
     }
 }

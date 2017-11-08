@@ -1,6 +1,10 @@
 package com.labuda.gdlunch.entity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Single menu item
@@ -36,7 +40,7 @@ public class MenuItem {
     /**
      * Constructor
      *
-     * @param name  item name
+     * @param name item name
      * @param price price
      */
     public MenuItem(String name, float price) {
@@ -66,12 +70,18 @@ public class MenuItem {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof MenuItem)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof MenuItem)) {
+            return false;
+        }
 
         MenuItem menuItem = (MenuItem) o;
 
-        if (Float.compare(menuItem.getPrice(), getPrice()) != 0) return false;
+        if (Float.compare(menuItem.getPrice(), getPrice()) != 0) {
+            return false;
+        }
         return getName().equals(menuItem.getName());
     }
 

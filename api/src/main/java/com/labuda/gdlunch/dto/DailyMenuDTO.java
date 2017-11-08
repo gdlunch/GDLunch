@@ -20,6 +20,11 @@ public class DailyMenuDTO {
     private LocalDate date;
 
     /**
+     * Restaurant name
+     */
+    private String restaurantName;
+
+    /**
      * List of courses on the menu on specific day
      */
     private List<MenuItemDTO> menu = new ArrayList<>();
@@ -30,6 +35,14 @@ public class DailyMenuDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
     }
 
     public LocalDate getDate() {
@@ -50,12 +63,18 @@ public class DailyMenuDTO {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof DailyMenuDTO)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof DailyMenuDTO)) {
+            return false;
+        }
 
         DailyMenuDTO that = (DailyMenuDTO) o;
 
-        if (getDate() != null ? !getDate().equals(that.getDate()) : that.getDate() != null) return false;
+        if (getDate() != null ? !getDate().equals(that.getDate()) : that.getDate() != null) {
+            return false;
+        }
         return getMenu() != null ? getMenu().equals(that.getMenu()) : that.getMenu() == null;
     }
 

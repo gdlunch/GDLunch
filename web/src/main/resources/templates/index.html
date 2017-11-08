@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+  <meta name="description" content="GoodData daily menu aggregator"/>
+  <meta name="author" content="Dominik Labuda"/>
+
+  <title>GoodData Lunch Brno</title>
+
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
+        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+        crossorigin="anonymous"/>
+
+  <!-- Custom styles for this template -->
+  <link href="../static/css/starter.css" th:href="@{/css/starter.css}" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="/">GoodData Lunch</a>
+</nav>
+
+<main role="main" class="container">
+  <p class="lead">
+  <h1 class="cover-heading" th:text="${currentDate}" align="center">01.01.1970</h1>
+  </p>
+
+  <p class="lead">
+  <p class="lead" th:each="dailyMenu : ${dailyMenus}">
+  <h2 th:text="${dailyMenu.restaurantName}">RESTAURANT_NAME</h2>
+  <table class="table table-hover">
+    <tr>
+      <th scope="col">Dish</th>
+      <th scope="col">Price</th>
+    </tr>
+    <tr th:each="dish : ${dailyMenu.menu}">
+      <td th:text="${dish.name}" align="left">Name</td>
+      <td th:text="${dish.price}" align="right">Price</td>
+    </tr>
+  </table>
+  </p>
+  </p>
+</main>
+
+<footer class="footer">
+  <p>&copy; GoodData Lunch Brno, Dominik Labuda 2017 <a href="https://github.com/Dominick1993/GD-lunch-Brno"><img src="../static/img/GitHub_Logo.png" th:src="@{/img/GitHub_Logo.png}" height="20px" style="vertical-align: middle;"/> </a> </p>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

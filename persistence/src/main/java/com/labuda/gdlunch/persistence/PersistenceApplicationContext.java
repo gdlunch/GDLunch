@@ -1,5 +1,8 @@
 package com.labuda.gdlunch.persistence;
 
+import java.util.Properties;
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 import org.hibernate.ejb.HibernatePersistence;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,10 +14,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
-import javax.annotation.Resource;
-import javax.sql.DataSource;
-import java.util.Properties;
 
 /**
  * Persistence config
@@ -66,9 +65,12 @@ public class PersistenceApplicationContext {
 
     private Properties hibProperties() {
         Properties properties = new Properties();
-        properties.put(PROPERTY_NAME_HIBERNATE_DIALECT, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
-        properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
-        properties.put(PROPERTY_NAME_HIBERNATE_HBM2DDL, env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_HBM2DDL));
+        properties.put(PROPERTY_NAME_HIBERNATE_DIALECT,
+                env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_DIALECT));
+        properties.put(PROPERTY_NAME_HIBERNATE_SHOW_SQL,
+                env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_SHOW_SQL));
+        properties.put(PROPERTY_NAME_HIBERNATE_HBM2DDL,
+                env.getRequiredProperty(PROPERTY_NAME_HIBERNATE_HBM2DDL));
         return properties;
     }
 

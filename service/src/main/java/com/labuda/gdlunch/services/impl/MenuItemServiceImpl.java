@@ -3,12 +3,11 @@ package com.labuda.gdlunch.services.impl;
 import com.labuda.gdlunch.entity.MenuItem;
 import com.labuda.gdlunch.repository.MenuItemRepository;
 import com.labuda.gdlunch.services.MenuItemService;
+import javax.annotation.Resource;
+import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
-import javax.transaction.Transactional;
 
 /**
  * Menu item service implementation

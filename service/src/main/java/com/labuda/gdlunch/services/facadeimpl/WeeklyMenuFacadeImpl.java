@@ -5,10 +5,9 @@ import com.labuda.gdlunch.entity.WeeklyMenu;
 import com.labuda.gdlunch.facade.WeeklyMenuFacade;
 import com.labuda.gdlunch.services.BeanMappingService;
 import com.labuda.gdlunch.services.WeeklyMenuService;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 
 
 /**

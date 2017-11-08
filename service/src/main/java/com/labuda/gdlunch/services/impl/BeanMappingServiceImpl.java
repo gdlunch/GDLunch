@@ -1,13 +1,12 @@
 package com.labuda.gdlunch.services.impl;
 
 import com.labuda.gdlunch.services.BeanMappingService;
-import org.dozer.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import org.dozer.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  * Bean mapping service implementation

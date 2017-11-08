@@ -4,18 +4,18 @@ import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.tools.WebAddressesConfig;
 
 /**
- * Parses weekly menu from Sborovna restaurant
+ * Parses weekly menu from Formanka restaurant
  */
-public class SborovnaParser extends ZomatoParser {
+public class FormankaParser extends ZomatoParser {
 
-    public SborovnaParser() {
-        super(WebAddressesConfig.getInstance().getString("sborovna"));
+    public FormankaParser() {
+        super(WebAddressesConfig.getInstance().getString("formanka"));
     }
 
     @Override
     public DailyMenu parse() {
         DailyMenu result = super.parse();
-        result.setRestaurantName("Sborovna");
+        result.setRestaurantName("Formanka");
         return result;
     }
 }

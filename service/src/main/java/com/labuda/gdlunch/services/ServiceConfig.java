@@ -1,15 +1,14 @@
 package com.labuda.gdlunch.services;
 
 import com.labuda.gdlunch.persistence.PersistenceApplicationContext;
+import java.util.ArrayList;
+import java.util.List;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Configuration
 @Import(PersistenceApplicationContext.class)

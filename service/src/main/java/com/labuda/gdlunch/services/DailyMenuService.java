@@ -1,6 +1,8 @@
 package com.labuda.gdlunch.services;
 
 import com.labuda.gdlunch.entity.DailyMenu;
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Daily menu service interface
@@ -31,4 +33,18 @@ public interface DailyMenuService {
      */
     DailyMenu update(DailyMenu dailyMenu);
 
+    /**
+     * Retrieves all daily menus from the database
+     *
+     * @return list of all daily menus
+     */
+    List<DailyMenu> findAll();
+
+    /**
+     * Retrieves all daily menus from the database that have the given date
+     *
+     * @param date menu date
+     * @return list of all daily menus that have common date
+     */
+    List<DailyMenu> findAllByDate(LocalDate date);
 }

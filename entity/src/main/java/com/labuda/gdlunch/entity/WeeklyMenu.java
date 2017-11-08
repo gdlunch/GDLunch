@@ -1,8 +1,14 @@
 package com.labuda.gdlunch.entity;
 
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * Contains menu for the whole week
@@ -75,13 +81,19 @@ public class WeeklyMenu {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof WeeklyMenu)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof WeeklyMenu)) {
+            return false;
+        }
 
         WeeklyMenu that = (WeeklyMenu) o;
 
-        if (restaurantName != null ? !restaurantName.equals(that.restaurantName) : that.restaurantName != null)
+        if (restaurantName != null ? !restaurantName.equals(that.restaurantName)
+                : that.restaurantName != null) {
             return false;
+        }
         return menu != null ? menu.equals(that.menu) : that.menu == null;
     }
 

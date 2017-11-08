@@ -1,9 +1,8 @@
 package com.labuda.gdlunch.tools;
 
+import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.io.IOException;
 
 /**
  * Configuration of web addresses for restaurant pages

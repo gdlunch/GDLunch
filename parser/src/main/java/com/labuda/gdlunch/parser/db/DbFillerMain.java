@@ -1,15 +1,13 @@
 package com.labuda.gdlunch.parser.db;
 
+import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import javax.annotation.PostConstruct;
-
 /**
- * Database filler
- * <p>
- * This class provides an entry point to application that will fill the database with daily menu entries
+ * Database filler <p> This class provides an entry point to application that will fill the database
+ * with daily menu entries
  */
 @SpringBootApplication(scanBasePackages = "com.labuda.gdlunch")
 public class DbFillerMain {
@@ -30,5 +28,4 @@ public class DbFillerMain {
     public void fill() {
         dbFiller.fill();
     }
-
 }

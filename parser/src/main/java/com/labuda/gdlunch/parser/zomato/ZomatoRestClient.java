@@ -1,6 +1,7 @@
 package com.labuda.gdlunch.parser.zomato;
 
 import com.labuda.gdlunch.tools.ApiKeys;
+import java.io.IOException;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -8,11 +9,8 @@ import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-
 /**
- * Rest client for Zomato
- * This client will be setup to work specifically with Zomato API
+ * Rest client for Zomato This client will be setup to work specifically with Zomato API
  */
 public class ZomatoRestClient {
 

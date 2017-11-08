@@ -49,13 +49,19 @@ public class WeeklyMenuDTO {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof WeeklyMenuDTO)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof WeeklyMenuDTO)) {
+            return false;
+        }
 
         WeeklyMenuDTO that = (WeeklyMenuDTO) o;
 
-        if (getRestaurantName() != null ? !getRestaurantName().equals(that.getRestaurantName()) : that.getRestaurantName() != null)
+        if (getRestaurantName() != null ? !getRestaurantName().equals(that.getRestaurantName())
+                : that.getRestaurantName() != null) {
             return false;
+        }
         return getMenu() != null ? getMenu().equals(that.getMenu()) : that.getMenu() == null;
     }
 

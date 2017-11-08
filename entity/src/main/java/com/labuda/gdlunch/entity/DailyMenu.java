@@ -1,9 +1,15 @@
 package com.labuda.gdlunch.entity;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  * This class represents menu for a single day
@@ -25,6 +31,11 @@ public class DailyMenu {
     private LocalDate date;
 
     /**
+     * Restaurant name
+     */
+    private String restaurantName;
+
+    /**
      * List of courses on the menu on specific day
      */
     @OneToMany(cascade = CascadeType.ALL)
@@ -42,6 +53,14 @@ public class DailyMenu {
         this.date = date;
     }
 
+    public String getRestaurantName() {
+        return restaurantName;
+    }
+
+    public void setRestaurantName(String restaurantName) {
+        this.restaurantName = restaurantName;
+    }
+
     public List<MenuItem> getMenu() {
         return menu;
     }
@@ -52,13 +71,21 @@ public class DailyMenu {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof DailyMenu)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof DailyMenu)) {
+            return false;
+        }
 
         DailyMenu dailyMenu = (DailyMenu) o;
 
-        if (getDate() != null ? !getDate().equals(dailyMenu.getDate()) : dailyMenu.getDate() != null) return false;
-        return getMenu() != null ? getMenu().equals(dailyMenu.getMenu()) : dailyMenu.getMenu() == null;
+        if (getDate() != null ? !getDate().equals(dailyMenu.getDate())
+                : dailyMenu.getDate() != null) {
+            return false;
+        }
+        return getMenu() != null ? getMenu().equals(dailyMenu.getMenu())
+                : dailyMenu.getMenu() == null;
     }
 
     @Override
