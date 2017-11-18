@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot'
 }
 
 group 'com.labuda'
@@ -13,11 +12,9 @@ repositories {
 }
 
 dependencies {
-    compile project(':')
     compile project(':tools')
     compile project(':entity')
     compile project(':service')
-    compile project(':persistence')
 
     compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.9.0'
     compile group: 'org.jsoup', name: 'jsoup', version: '1.10.3'

@@ -4,7 +4,6 @@ include 'web'
 include 'parser'
 include 'tools'
 include 'entity'
-include 'persistence'
 include 'api'
 include 'service'
 

@@ -6,12 +6,20 @@ import com.labuda.gdlunch.parser.AbstractRestaurantWebParser;
 import com.labuda.gdlunch.parser.DailyParser;
 import java.time.LocalDate;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Basic Zomato parser
  */
 public abstract class ZomatoParser extends AbstractRestaurantWebParser implements DailyParser {
+
+    /**
+     * Logger
+     */
+    private final static Logger log = LoggerFactory.getLogger(ZomatoParser.class);
 
     /**
      * Zomato REST client
@@ -36,18 +44,22 @@ public abstract class ZomatoParser extends AbstractRestaurantWebParser implement
         DailyMenu result = new DailyMenu();
         result.setDate(LocalDate.now());
 
-        JSONObject dailyMenu = getDailyMenu();
-        JSONArray dishes = dailyMenu.getJSONArray("daily_menus").getJSONObject(0)
-                .getJSONObject("daily_menu").getJSONArray("dishes");
+        try {
+            JSONObject dailyMenu = getDailyMenu();
+            JSONArray dishes = dailyMenu.getJSONArray("daily_menus").getJSONObject(0)
+                    .getJSONObject("daily_menu").getJSONArray("dishes");
 
-        for (int i = 0; i < dishes.length(); i++) {
-            JSONObject dish = dishes.getJSONObject(i).getJSONObject("dish");
+            for (int i = 0; i < dishes.length(); i++) {
+                JSONObject dish = dishes.getJSONObject(i).getJSONObject("dish");
 
-            MenuItem menuItem = new MenuItem();
-            menuItem.setName(dish.getString("name").trim());
-            menuItem.setPrice(parsePriceWithKcAtTheEnd(dish.getString("price")));
+                MenuItem menuItem = new MenuItem();
+                menuItem.setName(dish.getString("name").trim());
+                menuItem.setPrice(parsePriceWithKcAtTheEnd(dish.getString("price")));
 
-            result.getMenu().add(menuItem);
+                result.getMenu().add(menuItem);
+            }
+        } catch (JSONException e) {
+            log.error("Parsing of: " + webAddress + "has failed.", e);
         }
 
         return result;

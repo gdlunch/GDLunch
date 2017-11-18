@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot'
 }
 
 group 'com.labuda'
@@ -12,12 +11,8 @@ repositories {
     mavenCentral()
 }
 
-
 dependencies {
-
-    compile project(':')
     compile project(':api')
-    compile project(':persistence')
     compile project(':entity')
 
     compile group: 'net.sf.dozer', name: 'dozer', version: '5.5.1'

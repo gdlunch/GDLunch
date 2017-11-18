@@ -4,11 +4,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * Main starting class
  */
 @SpringBootApplication(scanBasePackages = "com.labuda.gdlunch")
+@EnableJpaRepositories("com.labuda.gdlunch")
+@EntityScan("com.labuda.gdlunch")
 public class WebMain {
 
     /**
@@ -25,5 +29,4 @@ public class WebMain {
         log.info("Starting the web application");
         SpringApplication.run(WebMain.class, args);
     }
-
 }

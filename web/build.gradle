@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot'
+    id 'org.springframework.boot' version '1.5.8.RELEASE'
 }
 
 group 'com.labuda'
@@ -8,17 +8,25 @@ version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
+springBoot {
+    mainClass = "com.labuda.gdlunch.mvc.WebMain"
+}
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
+    compile project(':api')
+    compile project(':entity')
     compile project(':parser')
+    compile project(':service')
+    compile project(':tools')
     compile project(':')
-    compile project(':persistence')
 
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf'
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.8-dmr'
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
