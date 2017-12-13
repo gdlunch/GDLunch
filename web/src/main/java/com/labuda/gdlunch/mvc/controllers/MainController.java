@@ -30,6 +30,10 @@ public class MainController {
                 .filter(menu -> menu.getDate().equals(now)).collect(
                         Collectors.toList());
 
+        dailyMenusForToday.sort(
+                (o1, o2) -> o1.getRestaurantName().compareToIgnoreCase(o2.getRestaurantName())
+        );
+
         model.addAttribute("dailyMenus", dailyMenusForToday);
         model.addAttribute("currentDate", now.format(DateTimeFormatter.ofPattern("dd.MM.YYYY")));
         return "index";

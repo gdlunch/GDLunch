@@ -5,6 +5,7 @@ import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.entity.WeeklyMenu;
 import com.labuda.gdlunch.facade.DailyMenuFacade;
 import com.labuda.gdlunch.parser.AmphoneParser;
+import com.labuda.gdlunch.parser.BuddhaParser;
 import com.labuda.gdlunch.services.BeanMappingService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,16 @@ public class WeeklyMenusJob {
     @Scheduled(cron="0 0 8 * * Mon")
     public void execute() {
         AmphoneParser amphoneParser = new AmphoneParser();
-        WeeklyMenu weeklyMenu = amphoneParser.parse();
+        BuddhaParser buddhaParser = new BuddhaParser();
 
-        for (DailyMenu dailyMenu : weeklyMenu.getMenu()) {
+        WeeklyMenu amphoneMenu = amphoneParser.parse();
+        WeeklyMenu buddhaMenu = buddhaParser.parse();
+
+        for (DailyMenu dailyMenu : amphoneMenu.getMenu()) {
+            dailyMenuFacade.addDailyMenu(beanMappingService.mapTo(dailyMenu, DailyMenuDTO.class));
+        }
+
+        for (DailyMenu dailyMenu : buddhaMenu.getMenu()) {
             dailyMenuFacade.addDailyMenu(beanMappingService.mapTo(dailyMenu, DailyMenuDTO.class));
         }
     }

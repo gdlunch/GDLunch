@@ -24,8 +24,8 @@ public class DbFiller {
      * Fills the database with entries that were parsed from web
      */
     public void fill() {
-        dailyMenusJob.execute();
         weeklyMenusJob.execute();
+        dailyMenusJob.execute();
     }
 
 }
