@@ -5,6 +5,7 @@ import com.labuda.gdlunch.facade.DailyMenuFacade;
 import com.labuda.gdlunch.parser.zomato.FormankaParser;
 import com.labuda.gdlunch.parser.zomato.SborovnaParser;
 import com.labuda.gdlunch.parser.zomato.SuziesParser;
+import com.labuda.gdlunch.parser.zomato.VeselaVaciceParser;
 import com.labuda.gdlunch.services.BeanMappingService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,7 @@ public class DailyMenusJob {
                 beanMappingService.mapTo(new SborovnaParser().parse(), DailyMenuDTO.class));
         dailyMenuFacade.addDailyMenu(
                 beanMappingService.mapTo(new SuziesParser().parse(), DailyMenuDTO.class));
+        dailyMenuFacade.addDailyMenu(
+                beanMappingService.mapTo(new VeselaVaciceParser().parse(), DailyMenuDTO.class));
     }
 }
