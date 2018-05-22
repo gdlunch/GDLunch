@@ -15,19 +15,8 @@ public class RestController {
     @Autowired
     private DailyMenuFacade dailyMenuFacade;
 
-    @RequestMapping(value = "/json", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
     public List<DailyMenuDTO> menus() {
-        LocalDate now = LocalDate.now();
-        // TODO Fix getAllMenusForDate() as soon as possible, as the following is a slow hack
-        List<DailyMenuDTO> dailyMenus = dailyMenuFacade.getAllMenus();
-        List<DailyMenuDTO> dailyMenusForToday = dailyMenus.stream()
-                .filter(menu -> menu.getDate().equals(now)).collect(
-                        Collectors.toList());
-
-        dailyMenusForToday.sort(
-                (o1, o2) -> o1.getRestaurantName().compareToIgnoreCase(o2.getRestaurantName())
-        );
-
-        return dailyMenusForToday;
+        return dailyMenuFacade.getAllMenusForDate(LocalDate.now());
     }
 }
