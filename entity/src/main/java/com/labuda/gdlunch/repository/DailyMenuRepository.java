@@ -15,8 +15,6 @@ public interface DailyMenuRepository extends JpaRepository<DailyMenu, Long> {
      * @param date menu date
      * @return list of daily menus with common date
      */
-    // TODO Fix this if possible, it seems that current version of JpaRepository does not support
-    // the new LocalDate class that was introduced in JDK8
     List<DailyMenu> findByDate(java.time.temporal.Temporal date);
 
 }

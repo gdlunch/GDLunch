@@ -48,6 +48,6 @@ public class DailyMenuFacadeImpl implements DailyMenuFacade {
 
     @Override
     public List<DailyMenuDTO> getAllMenusForDate(LocalDate date) {
-        return beanMappingService.mapTo(dailyMenuService.findAll(), DailyMenuDTO.class);
+        return beanMappingService.mapTo(dailyMenuService.findAllByDate(date), DailyMenuDTO.class);
     }
 }

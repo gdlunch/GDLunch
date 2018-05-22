@@ -5,7 +5,6 @@ import com.labuda.gdlunch.facade.DailyMenuFacade;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,19 +22,14 @@ public class MainController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
-        LocalDate now = LocalDate.now();
-        // TODO Fix getAllMenusForDate() as soon as possible, as the following is a slow hack
-        List<DailyMenuDTO> dailyMenus = dailyMenuFacade.getAllMenus();
-        List<DailyMenuDTO> dailyMenusForToday = dailyMenus.stream()
-                .filter(menu -> menu.getDate().equals(now)).collect(
-                        Collectors.toList());
+        List<DailyMenuDTO> dailyMenus = dailyMenuFacade.getAllMenusForDate(LocalDate.now());
 
-        dailyMenusForToday.sort(
+        dailyMenus.sort(
                 (o1, o2) -> o1.getRestaurantName().compareToIgnoreCase(o2.getRestaurantName())
         );
 
-        model.addAttribute("dailyMenus", dailyMenusForToday);
-        model.addAttribute("currentDate", now.format(DateTimeFormatter.ofPattern("dd.MM.YYYY")));
+        model.addAttribute("dailyMenus", dailyMenus);
+        model.addAttribute("currentDate", LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.YYYY")));
         return "index";
     }
 }
