@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Configuration of API keys for various services
  */
-public class ApiKeys extends Config {
+public class ApiKeys extends PropertiesConfig {
 
     /**
      * Logger
@@ -17,7 +17,7 @@ public class ApiKeys extends Config {
     /**
      * Singleton instance
      */
-    private final static Config INSTANCE = new ApiKeys();
+    private final static PropertiesConfig INSTANCE = new ApiKeys();
 
     private ApiKeys() {
         super();
@@ -29,7 +29,7 @@ public class ApiKeys extends Config {
         }
     }
 
-    public static Config getInstance() {
+    public static PropertiesConfig getInstance() {
         return INSTANCE;
     }
 }

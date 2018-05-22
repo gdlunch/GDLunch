@@ -9,12 +9,12 @@ import org.slf4j.LoggerFactory;
 /**
  * Configuration class
  */
-public abstract class Config {
+public abstract class PropertiesConfig {
 
     /**
      * Logger
      */
-    private final static Logger log = LoggerFactory.getLogger(Config.class);
+    private final static Logger log = LoggerFactory.getLogger(PropertiesConfig.class);
 
     /**
      * Properties

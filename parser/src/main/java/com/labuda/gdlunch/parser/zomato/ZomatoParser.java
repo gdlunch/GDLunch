@@ -4,6 +4,7 @@ import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.entity.MenuItem;
 import com.labuda.gdlunch.parser.AbstractRestaurantWebParser;
 import com.labuda.gdlunch.parser.DailyParser;
+import com.labuda.gdlunch.parser.entity.Restaurant;
 import java.time.LocalDate;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -14,7 +15,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Basic Zomato parser
  */
-public abstract class ZomatoParser extends AbstractRestaurantWebParser implements DailyParser {
+public class ZomatoParser extends AbstractRestaurantWebParser implements DailyParser {
 
     /**
      * Logger
@@ -26,8 +27,12 @@ public abstract class ZomatoParser extends AbstractRestaurantWebParser implement
      */
     private ZomatoRestClient zomatoRestClient = new ZomatoRestClient();
 
-    protected ZomatoParser(String webAddress) {
-        super(webAddress);
+    /**
+     * Constructor
+     * @param restaurant restaurant
+     */
+    public ZomatoParser(Restaurant restaurant) {
+        super(restaurant);
     }
 
     /**
@@ -36,7 +41,7 @@ public abstract class ZomatoParser extends AbstractRestaurantWebParser implement
      * @return daily menu as JSON
      */
     protected JSONObject getDailyMenu() {
-        return zomatoRestClient.getDailyMenu(webAddress);
+        return zomatoRestClient.getDailyMenu(restaurant.getParserUrl());
     }
 
     @Override
@@ -59,8 +64,9 @@ public abstract class ZomatoParser extends AbstractRestaurantWebParser implement
                 result.getMenu().add(menuItem);
             }
         } catch (JSONException e) {
-            log.error("Parsing of: " + webAddress + "has failed.", e);
+            log.error("Parsing of: " + restaurant + "has failed.", e);
         }
+        result.setRestaurantName(restaurant.getName());
 
         return result;
     }

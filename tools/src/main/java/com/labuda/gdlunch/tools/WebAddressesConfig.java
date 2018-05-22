@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Configuration of web addresses for restaurant pages
  */
-public class WebAddressesConfig extends Config {
+public class WebAddressesConfig extends PropertiesConfig {
 
     /**
      * Logger
@@ -17,7 +17,7 @@ public class WebAddressesConfig extends Config {
     /**
      * Singleton instance
      */
-    private final static Config INSTANCE = new WebAddressesConfig();
+    private final static PropertiesConfig INSTANCE = new WebAddressesConfig();
 
     private WebAddressesConfig() {
         super();
@@ -29,7 +29,7 @@ public class WebAddressesConfig extends Config {
         }
     }
 
-    public static Config getInstance() {
+    public static PropertiesConfig getInstance() {
         return INSTANCE;
     }
 }

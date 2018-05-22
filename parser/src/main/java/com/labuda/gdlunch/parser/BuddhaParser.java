@@ -3,8 +3,8 @@ package com.labuda.gdlunch.parser;
 import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.entity.MenuItem;
 import com.labuda.gdlunch.entity.WeeklyMenu;
+import com.labuda.gdlunch.parser.entity.Restaurant;
 import com.labuda.gdlunch.tools.DateUtils;
-import com.labuda.gdlunch.tools.WebAddressesConfig;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
@@ -27,8 +27,12 @@ public class BuddhaParser extends AbstractRestaurantWebParser implements WeeklyP
      */
     private final static Logger log = LoggerFactory.getLogger(BuddhaParser.class);
 
-    public BuddhaParser() {
-        super(WebAddressesConfig.getInstance().getString("buddha"));
+    /**
+     * Constructor
+     * @param restaurant restaurant details
+     */
+    public BuddhaParser(Restaurant restaurant) {
+        super(restaurant);
     }
 
     @Override
@@ -36,11 +40,11 @@ public class BuddhaParser extends AbstractRestaurantWebParser implements WeeklyP
         WeeklyMenu result = new WeeklyMenu();
 
         try {
-            Document document = Jsoup.connect(webAddress).get();
+            Document document = Jsoup.connect(restaurant.getParserUrl()).get();
             Elements all = document.select("p.textmenu");
             LocalDate mondayOfCurrentWeek = DateUtils.getMondayOfCurrentWeek();
 
-            List<Element> days = all.subList(1, all.size() - 1);
+            List<Element> days = all;
 
             for (int i = 0; i < days.size(); i++) {
                 DailyMenu dailyMenu = new DailyMenu();
@@ -50,7 +54,7 @@ public class BuddhaParser extends AbstractRestaurantWebParser implements WeeklyP
                 List<TextNode> day = days.get(i).textNodes();
                 for (TextNode node : day) {
                     String nodeText = Parser.unescapeEntities(node.text(), false).replaceAll("(^\\h*)|(\\h*$)","");
-                    if (!nodeText.trim().isEmpty() && !nodeText.startsWith("+")) {
+                    if (!nodeText.trim().isEmpty() && nodeText.startsWith("*")) {
                         dailyMenu.getMenu().add(
                                 new MenuItem(nodeText.substring(0, nodeText.length()-9), parsePrice(nodeText))
                         );
@@ -60,7 +64,7 @@ public class BuddhaParser extends AbstractRestaurantWebParser implements WeeklyP
             }
 
         } catch (IOException e) {
-            log.error("Parsing failed", e);
+            log.error("Parsing using the BuddhaParser has failed", e);
         }
 
         return result;

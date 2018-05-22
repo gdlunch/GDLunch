@@ -1,5 +1,6 @@
 package com.labuda.gdlunch.parser;
 
+import com.labuda.gdlunch.parser.entity.Restaurant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,16 +15,16 @@ public abstract class AbstractRestaurantWebParser {
     private final static Logger log = LoggerFactory.getLogger(AbstractRestaurantWebParser.class);
 
     /**
-     * Web address
+     * Restaurant
      */
-    protected final String webAddress;
+    protected final Restaurant restaurant;
 
     /**
      * Constructor
      *
-     * @param webAddress restaurant web address
+     * @param restaurant restaurant
      */
-    public AbstractRestaurantWebParser(String webAddress) {
-        this.webAddress = webAddress;
+    public AbstractRestaurantWebParser(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 }

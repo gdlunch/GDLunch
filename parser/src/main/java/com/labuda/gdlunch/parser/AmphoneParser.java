@@ -3,6 +3,7 @@ package com.labuda.gdlunch.parser;
 import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.entity.MenuItem;
 import com.labuda.gdlunch.entity.WeeklyMenu;
+import com.labuda.gdlunch.parser.entity.Restaurant;
 import com.labuda.gdlunch.tools.DateUtils;
 import com.labuda.gdlunch.tools.WebAddressesConfig;
 import java.io.IOException;
@@ -27,8 +28,8 @@ public class AmphoneParser extends AbstractRestaurantWebParser implements Weekly
     /**
      * Constructor
      */
-    public AmphoneParser() {
-        super(WebAddressesConfig.getInstance().getString("amphone"));
+    public AmphoneParser(Restaurant restaurant) {
+        super(restaurant);
     }
 
     @Override
@@ -36,7 +37,7 @@ public class AmphoneParser extends AbstractRestaurantWebParser implements Weekly
         WeeklyMenu result = new WeeklyMenu("Amphone");
 
         try {
-            Document document = Jsoup.connect(webAddress).get();
+            Document document = Jsoup.connect(restaurant.getParserUrl()).get();
             Elements elements = document.select(".uk-grid li");
             Elements soups = elements.select("p em");
             Elements mainCourses = elements.select("p ~ ol");
