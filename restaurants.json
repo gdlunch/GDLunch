@@ -52,6 +52,17 @@
           "parserUrl": "http://www.amphone.eu/restaurace"
         }
       ]
+    },
+    {
+      "parserClass": "com.labuda.gdlunch.parser.VivobeneParser",
+      "refreshFrequency": "daily",
+      "restaurants": [
+        {
+          "name": "Vivobene Gusto",
+          "url": "http://www.vivobene-gusto.cz/",
+          "parserUrl": "http://www.vivobene-gusto.cz/obedove-menu"
+        }
+      ]
     }
   ]
 }
