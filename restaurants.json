@@ -41,6 +41,17 @@
           "parserUrl": "http://www.indian-restaurant-buddha.cz/index.html"
         }
       ]
+    },
+    {
+      "parserClass": "com.labuda.gdlunch.parser.SabaidyParser",
+      "refreshFrequency": "weekly",
+      "restaurants": [
+        {
+          "name": "Sabaidy",
+          "url": "http://www.amphone.eu/restaurace",
+          "parserUrl": "http://www.amphone.eu/restaurace"
+        }
+      ]
     }
   ]
 }

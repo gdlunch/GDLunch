@@ -49,7 +49,7 @@ public class BuddhaParser extends AbstractRestaurantWebParser implements WeeklyP
             for (int i = 0; i < days.size(); i++) {
                 DailyMenu dailyMenu = new DailyMenu();
                 dailyMenu.setDate(mondayOfCurrentWeek.plusDays(i));
-                dailyMenu.setRestaurantName("Buddha");
+                dailyMenu.setRestaurantName(restaurant.getName());
 
                 List<TextNode> day = days.get(i).textNodes();
                 for (TextNode node : day) {

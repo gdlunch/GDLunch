@@ -5,9 +5,10 @@ import com.labuda.gdlunch.entity.MenuItem;
 import com.labuda.gdlunch.entity.WeeklyMenu;
 import com.labuda.gdlunch.parser.entity.Restaurant;
 import com.labuda.gdlunch.tools.DateUtils;
-import com.labuda.gdlunch.tools.WebAddressesConfig;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -18,23 +19,23 @@ import org.slf4j.LoggerFactory;
 /**
  * Parses weekly menu from Amphone hotel
  */
-public class AmphoneParser extends AbstractRestaurantWebParser implements WeeklyParser {
+public class SabaidyParser extends AbstractRestaurantWebParser implements WeeklyParser {
 
     /**
      * Logger
      */
-    private final static Logger log = LoggerFactory.getLogger(AmphoneParser.class);
+    private final static Logger log = LoggerFactory.getLogger(SabaidyParser.class);
 
     /**
      * Constructor
      */
-    public AmphoneParser(Restaurant restaurant) {
+    public SabaidyParser(Restaurant restaurant) {
         super(restaurant);
     }
 
     @Override
     public WeeklyMenu parse() {
-        WeeklyMenu result = new WeeklyMenu("Amphone");
+        WeeklyMenu result = new WeeklyMenu();
 
         try {
             Document document = Jsoup.connect(restaurant.getParserUrl()).get();
@@ -47,7 +48,7 @@ public class AmphoneParser extends AbstractRestaurantWebParser implements Weekly
             for (int i = 0; i < mainCourses.size(); i++) {
                 DailyMenu dailyMenu = new DailyMenu();
                 dailyMenu.setDate(mondayOfCurrentWeek.plusDays(i));
-                dailyMenu.setRestaurantName("Amphone Hotel");
+                dailyMenu.setRestaurantName(restaurant.getName());
                 dailyMenu.getMenu().add(new MenuItem(soups.get(i).text(), 0.0f));
 
                 Elements courses = mainCourses.get(i).select("li");
@@ -74,7 +75,14 @@ public class AmphoneParser extends AbstractRestaurantWebParser implements Weekly
      */
     private Float parsePrice(String item) {
         item = item.trim();
+        Pattern p = Pattern.compile("([0-9]+)");
         String cropped = item.substring(item.length() - 5, item.length() - 2);
-        return Float.parseFloat(cropped.trim());
+        Matcher m = p.matcher(cropped);
+
+        if (m.find()) {
+            return Float.parseFloat(m.group());
+        } else {
+            return 0f;
+        }
     }
 }
