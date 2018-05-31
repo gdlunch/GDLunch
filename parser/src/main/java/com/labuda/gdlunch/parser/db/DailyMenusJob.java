@@ -6,7 +6,7 @@ import com.labuda.gdlunch.parser.DailyParser;
 import com.labuda.gdlunch.parser.RestaurantsConfig;
 import com.labuda.gdlunch.parser.entity.ParserConfig;
 import com.labuda.gdlunch.parser.entity.ParserDefinition;
-import com.labuda.gdlunch.parser.entity.Restaurant;
+import com.labuda.gdlunch.entity.Restaurant;
 import com.labuda.gdlunch.services.BeanMappingService;
 
 import java.lang.reflect.Constructor;

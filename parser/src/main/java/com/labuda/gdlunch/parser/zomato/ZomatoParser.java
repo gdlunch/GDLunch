@@ -4,7 +4,7 @@ import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.entity.MenuItem;
 import com.labuda.gdlunch.parser.AbstractRestaurantWebParser;
 import com.labuda.gdlunch.parser.DailyParser;
-import com.labuda.gdlunch.parser.entity.Restaurant;
+import com.labuda.gdlunch.entity.Restaurant;
 import java.time.LocalDate;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -66,7 +66,7 @@ public class ZomatoParser extends AbstractRestaurantWebParser implements DailyPa
         } catch (JSONException e) {
             log.error("Parsing of: " + restaurant + "has failed.", e);
         }
-        result.setRestaurantName(restaurant.getName());
+        result.setRestaurant(restaurant);
 
         return result;
     }

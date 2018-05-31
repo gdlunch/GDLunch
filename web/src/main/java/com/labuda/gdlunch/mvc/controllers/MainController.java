@@ -25,7 +25,7 @@ public class MainController {
         List<DailyMenuDTO> dailyMenus = dailyMenuFacade.getAllMenusForDate(LocalDate.now());
 
         dailyMenus.sort(
-                (o1, o2) -> o1.getRestaurantName().compareToIgnoreCase(o2.getRestaurantName())
+                (o1, o2) -> o1.getRestaurant().getName().compareToIgnoreCase(o2.getRestaurant().getName())
         );
 
         model.addAttribute("dailyMenus", dailyMenus);

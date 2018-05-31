@@ -22,7 +22,7 @@ public class DailyMenuDTO {
     /**
      * Restaurant name
      */
-    private String restaurantName;
+    private RestaurantDTO restaurant;
 
     /**
      * List of courses on the menu on specific day
@@ -37,12 +37,12 @@ public class DailyMenuDTO {
         this.id = id;
     }
 
-    public String getRestaurantName() {
-        return restaurantName;
+    public RestaurantDTO getRestaurant() {
+        return restaurant;
     }
 
-    public void setRestaurantName(String restaurantName) {
-        this.restaurantName = restaurantName;
+    public void setRestaurant(RestaurantDTO restaurant) {
+        this.restaurant = restaurant;
     }
 
     public LocalDate getDate() {
@@ -91,6 +91,7 @@ public class DailyMenuDTO {
                 "id=" + id +
                 ", date=" + date +
                 ", menu=" + menu +
+                ", restaurant=" + restaurant +
                 '}';
     }
 }

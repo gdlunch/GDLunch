@@ -1,5 +1,6 @@
 package com.labuda.gdlunch.parser.entity;
 
+import com.labuda.gdlunch.entity.Restaurant;
 import java.util.List;
 
 public class ParserDefinition {

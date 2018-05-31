@@ -1,6 +1,6 @@
 package com.labuda.gdlunch.parser;
 
-import com.labuda.gdlunch.parser.entity.Restaurant;
+import com.labuda.gdlunch.entity.Restaurant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

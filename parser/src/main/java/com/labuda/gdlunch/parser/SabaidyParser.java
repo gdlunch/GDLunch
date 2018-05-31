@@ -3,7 +3,7 @@ package com.labuda.gdlunch.parser;
 import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.entity.MenuItem;
 import com.labuda.gdlunch.entity.WeeklyMenu;
-import com.labuda.gdlunch.parser.entity.Restaurant;
+import com.labuda.gdlunch.entity.Restaurant;
 import com.labuda.gdlunch.tools.DateUtils;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -48,7 +48,7 @@ public class SabaidyParser extends AbstractRestaurantWebParser implements Weekly
             for (int i = 0; i < mainCourses.size(); i++) {
                 DailyMenu dailyMenu = new DailyMenu();
                 dailyMenu.setDate(mondayOfCurrentWeek.plusDays(i));
-                dailyMenu.setRestaurantName(restaurant.getName());
+                dailyMenu.setRestaurant(restaurant);
                 dailyMenu.getMenu().add(new MenuItem(soups.get(i).text(), 0.0f));
 
                 Elements courses = mainCourses.get(i).select("li");

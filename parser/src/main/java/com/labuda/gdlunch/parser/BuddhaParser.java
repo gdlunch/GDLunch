@@ -3,7 +3,7 @@ package com.labuda.gdlunch.parser;
 import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.entity.MenuItem;
 import com.labuda.gdlunch.entity.WeeklyMenu;
-import com.labuda.gdlunch.parser.entity.Restaurant;
+import com.labuda.gdlunch.entity.Restaurant;
 import com.labuda.gdlunch.tools.DateUtils;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -49,7 +49,7 @@ public class BuddhaParser extends AbstractRestaurantWebParser implements WeeklyP
             for (int i = 0; i < days.size(); i++) {
                 DailyMenu dailyMenu = new DailyMenu();
                 dailyMenu.setDate(mondayOfCurrentWeek.plusDays(i));
-                dailyMenu.setRestaurantName(restaurant.getName());
+                dailyMenu.setRestaurant(restaurant);
 
                 List<TextNode> day = days.get(i).textNodes();
                 for (TextNode node : day) {

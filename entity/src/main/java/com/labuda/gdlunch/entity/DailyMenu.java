@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -31,9 +32,10 @@ public class DailyMenu {
     private LocalDate date;
 
     /**
-     * Restaurant name
+     * Restaurant
      */
-    private String restaurantName;
+    @OneToOne(targetEntity = Restaurant.class, cascade = CascadeType.ALL)
+    private Restaurant restaurant;
 
     /**
      * List of courses on the menu on specific day
@@ -53,12 +55,12 @@ public class DailyMenu {
         this.date = date;
     }
 
-    public String getRestaurantName() {
-        return restaurantName;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setRestaurantName(String restaurantName) {
-        this.restaurantName = restaurantName;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     public List<MenuItem> getMenu() {
@@ -100,6 +102,7 @@ public class DailyMenu {
         return "DailyMenu{" +
                 "date=" + date +
                 ", menu=" + menu +
+                ", restaurant=" + restaurant +
                 '}' + System.lineSeparator();
     }
 }
