@@ -28,6 +28,11 @@
           "name": "Podloubí",
           "url": "https://www.podloubi-brno.cz/",
           "parserUrl": "https://developers.zomato.com/api/v2.1/dailymenu?res_id=17809249"
+        },
+        {
+          "name": "Hostinec U Semináru",
+          "url": "http://www.useminaru.cz/",
+          "parserUrl": "https://developers.zomato.com/api/v2.1/dailymenu?res_id=16506895"
         }
       ]
     },
