@@ -14,11 +14,11 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class VivobeneParser extends AbstractRestaurantWebParser implements DailyParser {
+public class CattaniParser extends AbstractRestaurantWebParser implements DailyParser {
 
-    private final static Logger log = LoggerFactory.getLogger(VivobeneParser.class);
+    private final static Logger log = LoggerFactory.getLogger(CattaniParser.class);
 
-    public VivobeneParser(Restaurant restaurant) {
+    public CattaniParser(Restaurant restaurant) {
         super(restaurant);
     }
 
@@ -30,23 +30,16 @@ public class VivobeneParser extends AbstractRestaurantWebParser implements Daily
 
         try {
             Document document = Jsoup.connect(restaurant.getParserUrl()).get();
-            Elements menu = document.select(".page-body .mainbar .main-col .row .bd .content");
+
+            Elements menu = document.select(".locationMenu.veveri .menu");
             if (menu.size() > 0) {
-                Elements courses = menu.first().getElementsByTag("tr");
+                Elements courses = menu.first().getElementsByTag("li");
 
                 for (Element course : courses) {
-                    Elements td = course.getElementsByTag("td");
-                    if (td.size() == 2) {
-                        result.getMenu().add(new MenuItem(
-                                td.get(0).text(),
-                                parsePrice(td.get(1).text())
-                        ));
-                    } else {
-                        result.getMenu().add(new MenuItem(
-                                td.get(0).text(),
-                                0f
-                        ));
-                    }
+                    result.getMenu().add(new MenuItem(
+                            course.select("[lang=cs]").first().text(),
+                            parsePrice(course.select(".price .amount").first().text())
+                    ));
                 }
             }
         } catch (IOException e) {
@@ -56,10 +49,9 @@ public class VivobeneParser extends AbstractRestaurantWebParser implements Daily
         return result;
     }
 
-    private Float parsePrice(String item) {
-        item = item.trim();
+    private Float parsePrice(String priceString) {
         Pattern p = Pattern.compile("([0-9]+)");
-        Matcher m = p.matcher(item);
+        Matcher m = p.matcher(priceString);
 
         if (m.find()) {
             float price = -1f;

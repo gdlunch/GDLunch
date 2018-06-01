@@ -68,6 +68,17 @@
           "parserUrl": "http://www.vivobene-gusto.cz/obedove-menu"
         }
       ]
+    },
+    {
+      "parserClass": "com.labuda.gdlunch.parser.CattaniParser",
+      "refreshFrequency": "daily",
+      "restaurants": [
+        {
+          "name": "Cattani",
+          "url": "http://www.cattani.cz/",
+          "parserUrl": "http://www.cattani.cz/"
+        }
+      ]
     }
   ]
 }
