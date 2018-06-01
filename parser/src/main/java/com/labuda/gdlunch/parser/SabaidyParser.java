@@ -76,8 +76,7 @@ public class SabaidyParser extends AbstractRestaurantWebParser implements Weekly
     private Float parsePrice(String item) {
         item = item.trim();
         Pattern p = Pattern.compile("([0-9]+)");
-        String cropped = item.substring(item.length() - 5, item.length() - 2);
-        Matcher m = p.matcher(cropped);
+        Matcher m = p.matcher(item);
 
         if (m.find()) {
             return Float.parseFloat(m.group());
