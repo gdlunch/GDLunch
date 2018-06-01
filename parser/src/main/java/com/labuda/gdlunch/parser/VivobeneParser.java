@@ -49,7 +49,7 @@ public class VivobeneParser extends AbstractRestaurantWebParser implements Daily
                     }
                 }
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error("Parsing failed", e);
         }
 

@@ -63,7 +63,7 @@ public class BuddhaParser extends AbstractRestaurantWebParser implements WeeklyP
                 result.addDailyMenu(dailyMenu);
             }
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error("Parsing using the BuddhaParser has failed", e);
         }
 

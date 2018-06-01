@@ -42,7 +42,7 @@ public class CattaniParser extends AbstractRestaurantWebParser implements DailyP
                     ));
                 }
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error("Parsing failed", e);
         }
 

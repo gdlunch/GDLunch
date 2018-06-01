@@ -60,7 +60,7 @@ public class SabaidyParser extends AbstractRestaurantWebParser implements Weekly
 
                 result.addDailyMenu(dailyMenu);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error("Parsing failed", e);
         }
 

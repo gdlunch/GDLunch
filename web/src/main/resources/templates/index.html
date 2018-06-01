@@ -1,64 +1,76 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
-  <meta name="description" content="GoodData daily menu aggregator"/>
-  <meta name="author" content="Dominik Labuda"/>
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
 
-  <title>GoodData Lunch Brno</title>
+    <meta name="description" content="GoodData daily menu aggregator"/>
+    <meta name="author" content="Dominik Labuda"/>
 
-  <link rel="stylesheet"
-        href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
-        integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
-        crossorigin="anonymous"/>
+    <title>GoodData Lunch Brno</title>
 
-  <!-- Custom styles for this template -->
-  <link href="../static/css/starter.css" th:href="@{/css/starter.css}" rel="stylesheet"/>
-</head>
-<body>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-  <a class="navbar-brand" href="/">GoodData Lunch</a>
-</nav>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.0/dist/bootstrap-toc.min.css"/>
 
-<main role="main" class="container">
-  <p class="lead">
-  <h1 class="cover-heading" th:text="${currentDate}" align="center">01.01.1970</h1>
-  </p>
+    <!-- Custom styles for this template -->
+    <link href="../static/css/starter.css" th:href="@{/css/starter.css}" rel="stylesheet"/>
+  </head>
 
-  <p class="lead">
-  <p class="lead" th:each="dailyMenu : ${dailyMenus}">
-  <a th:href="${dailyMenu.restaurant.getUrl()}"><h2 th:text="${dailyMenu.restaurant.name}">RESTAURANT_NAME</h2></a>
-  <table class="table table-hover">
-    <tr>
-      <th scope="col">Dish</th>
-      <th scope="col">Price</th>
-    </tr>
-    <tr th:each="dish : ${dailyMenu.menu}">
-      <td th:text="${dish.name}" align="left">Name</td>
-      <td th:text="${dish.price}" align="right">Price</td>
-    </tr>
-  </table>
-  </p>
-  </p>
-</main>
+  <body data-spy="scroll" data-target="#toc">
 
-<footer class="footer">
-  <p>&copy; GoodData Lunch Brno, Dominik Labuda 2018 <a href="https://github.com/Dominick1993/GD-lunch-Brno"><img src="../static/img/GitHub_Logo.png" th:src="@{/img/GitHub_Logo.png}" height="20px" style="vertical-align: middle;"/> </a> </p>
-</footer>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <a class="navbar-brand" href="/">GoodData Lunch</a>
+    </nav>
 
-<!-- Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
-        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-        crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"
-        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-        crossorigin="anonymous"></script>
+    <main role="main" class="container">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h1 class="cover-heading" th:text="${currentDate}" align="center">01.01.1970</h1>
+          </div>
+        </div>
 
-</body>
+        <div class="row">
+          <div class="col-sm-3 col-sm-offset-3">
+            <nav id="toc" data-toggle="toc" class="sticky-top"></nav>
+          </div>
+
+          <div class="col-sm-9">
+            <p class="lead">
+              <p class="lead" th:each="dailyMenu : ${dailyMenus}">
+                <a th:href="${dailyMenu.restaurant.getUrl()}"><h2 th:text="${dailyMenu.restaurant.name}">RESTAURANT_NAME</h2></a>
+                <table class="table table-hover">
+                  <tr>
+                    <th scope="col">Dish</th>
+                    <th scope="col">Price</th>
+                  </tr>
+                  <tr th:each="dish : ${dailyMenu.menu}">
+                    <td th:text="${dish.name}" align="left">Name</td>
+                    <td th:text="${dish.price}" align="right">Price</td>
+                  </tr>
+                </table>
+              </p>
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; GoodData Lunch Brno, Dominik Labuda 2018 <a href="https://github.com/Dominick1993/GD-lunch-Brno"><img src="../static/img/GitHub_Logo.png" th:src="@{/img/GitHub_Logo.png}" height="20px" style="vertical-align: middle;"/> </a> </p>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+            integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.0/dist/bootstrap-toc.min.js"></script>
+
+  </body>
 </html>
