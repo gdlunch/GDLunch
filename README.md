@@ -21,7 +21,9 @@ Currently used gradle version is 4.3
 
 ## How to run
 
-In order to run the app you have to provide the `application.properties` in the root. [Here is just a taste of some common properties](https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
+In order to run the app, you should not have to provide anything else besides the `restaurants.json` mentioned [below](#restaurant-definitions) and the app should run on `localhost:8080`.
+
+However, if you want to use some some database other than the in-memory (which is predefined) you have to provide the `application.properties` in the root. [Here is just a taste of some common properties](https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html)
 
 Minimal properties that you should specify in order to successfully deploy GDLunch:
 

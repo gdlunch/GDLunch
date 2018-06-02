@@ -27,6 +27,7 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf'
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.8-dmr'
+    compile group: 'com.h2database', name: 'h2', version: '1.4.197'
 
     compile group: 'com.github.dpaukov', name:'combinatoricslib3', version: '3.3.0'
 
