@@ -1,5 +1,7 @@
 package com.labuda.gdlunch.dto;
 
+import java.util.Objects;
+
 /**
  * Menu Item DTO class
  */
@@ -52,20 +54,14 @@ public class MenuItemDTO {
         if (!(o instanceof MenuItemDTO)) {
             return false;
         }
-
         MenuItemDTO that = (MenuItemDTO) o;
-
-        if (getName() != null ? !getName().equals(that.getName()) : that.getName() != null) {
-            return false;
-        }
-        return getPrice() != null ? getPrice().equals(that.getPrice()) : that.getPrice() == null;
+        return Objects.equals(getName(), that.getName()) &&
+                Objects.equals(getPrice(), that.getPrice());
     }
 
     @Override
     public int hashCode() {
-        int result = getName() != null ? getName().hashCode() : 0;
-        result = 31 * result + (getPrice() != null ? getPrice().hashCode() : 0);
-        return result;
+        return Objects.hash(getName(), getPrice());
     }
 
     @Override

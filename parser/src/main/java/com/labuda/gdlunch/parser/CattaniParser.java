@@ -3,7 +3,6 @@ package com.labuda.gdlunch.parser;
 import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.entity.MenuItem;
 import com.labuda.gdlunch.entity.Restaurant;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,10 +13,21 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Parses daily menu from Cattani restaurant
+ */
 public class CattaniParser extends AbstractRestaurantWebParser implements DailyParser {
 
+    /**
+     * Logger
+     */
     private final static Logger log = LoggerFactory.getLogger(CattaniParser.class);
 
+    /**
+     * Constructor
+     *
+     * @param restaurant restaurant details
+     */
     public CattaniParser(Restaurant restaurant) {
         super(restaurant);
     }
@@ -49,6 +59,12 @@ public class CattaniParser extends AbstractRestaurantWebParser implements DailyP
         return result;
     }
 
+    /**
+     * Parses the price
+     *
+     * @param priceString price
+     * @return parsed price if successful, -1 if not found
+     */
     private Float parsePrice(String priceString) {
         Pattern p = Pattern.compile("([0-9]+)");
         Matcher m = p.matcher(priceString);

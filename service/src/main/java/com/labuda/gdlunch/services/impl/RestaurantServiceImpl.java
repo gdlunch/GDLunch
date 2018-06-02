@@ -9,11 +9,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+/**
+ * Restaurant service implementation
+ */
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
 
+    /**
+     * Logger
+     */
     private final static Logger log = LoggerFactory.getLogger(RestaurantServiceImpl.class);
-    
+
+    /**
+     * Restaurant repository
+     */
     @Resource
     private RestaurantRepository restaurantRepository;
 
@@ -52,5 +61,5 @@ public class RestaurantServiceImpl implements RestaurantService {
         restaurantRepository.save(restaurant);
         return restaurant;
     }
-    
+
 }

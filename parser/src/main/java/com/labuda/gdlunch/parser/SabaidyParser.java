@@ -2,11 +2,11 @@ package com.labuda.gdlunch.parser;
 
 import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.entity.MenuItem;
-import com.labuda.gdlunch.entity.WeeklyMenu;
 import com.labuda.gdlunch.entity.Restaurant;
 import com.labuda.gdlunch.tools.DateUtils;
-import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
@@ -34,8 +34,8 @@ public class SabaidyParser extends AbstractRestaurantWebParser implements Weekly
     }
 
     @Override
-    public WeeklyMenu parse() {
-        WeeklyMenu result = new WeeklyMenu();
+    public List<DailyMenu> parse() {
+        List<DailyMenu> result = new ArrayList<>();
 
         try {
             Document document = Jsoup.connect(restaurant.getParserUrl()).get();
@@ -58,7 +58,7 @@ public class SabaidyParser extends AbstractRestaurantWebParser implements Weekly
                             parsePrice(course.text())));
                 }
 
-                result.addDailyMenu(dailyMenu);
+                result.add(dailyMenu);
             }
         } catch (Exception e) {
             log.error("Parsing failed", e);

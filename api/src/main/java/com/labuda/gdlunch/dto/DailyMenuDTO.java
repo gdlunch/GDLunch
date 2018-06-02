@@ -3,6 +3,7 @@ package com.labuda.gdlunch.dto;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Daily Menu DTO class
@@ -20,7 +21,7 @@ public class DailyMenuDTO {
     private LocalDate date;
 
     /**
-     * Restaurant name
+     * Restaurant
      */
     private RestaurantDTO restaurant;
 
@@ -69,20 +70,15 @@ public class DailyMenuDTO {
         if (!(o instanceof DailyMenuDTO)) {
             return false;
         }
-
         DailyMenuDTO that = (DailyMenuDTO) o;
-
-        if (getDate() != null ? !getDate().equals(that.getDate()) : that.getDate() != null) {
-            return false;
-        }
-        return getMenu() != null ? getMenu().equals(that.getMenu()) : that.getMenu() == null;
+        return Objects.equals(getDate(), that.getDate()) &&
+                Objects.equals(getRestaurant(), that.getRestaurant()) &&
+                Objects.equals(getMenu(), that.getMenu());
     }
 
     @Override
     public int hashCode() {
-        int result = getDate() != null ? getDate().hashCode() : 0;
-        result = 31 * result + (getMenu() != null ? getMenu().hashCode() : 0);
-        return result;
+        return Objects.hash(getDate(), getRestaurant(), getMenu());
     }
 
     @Override
@@ -90,8 +86,8 @@ public class DailyMenuDTO {
         return "DailyMenuDTO{" +
                 "id=" + id +
                 ", date=" + date +
-                ", menu=" + menu +
                 ", restaurant=" + restaurant +
+                ", menu=" + menu +
                 '}';
     }
 }

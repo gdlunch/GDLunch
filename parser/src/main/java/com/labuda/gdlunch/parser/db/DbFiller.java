@@ -11,12 +11,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class DbFiller {
 
-    /** Logger */
+    /**
+     * Logger
+     */
     private final static Logger log = LoggerFactory.getLogger(DbFiller.class);
 
+    /**
+     * Daily menus job
+     */
     @Autowired
     private DailyMenusJob dailyMenusJob;
 
+    /**
+     * Weekly menus job
+     */
     @Autowired
     private WeeklyMenusJob weeklyMenusJob;
 
@@ -24,8 +32,10 @@ public class DbFiller {
      * Fills the database with entries that were parsed from web
      */
     public void fill() {
+        log.info("Going to fill database with results from both weekly and daily jobs");
         weeklyMenusJob.execute();
         dailyMenusJob.execute();
+        log.info("Database should be filled now");
     }
 
 }
