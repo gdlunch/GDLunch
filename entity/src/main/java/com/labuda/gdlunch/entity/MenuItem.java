@@ -1,5 +1,6 @@
 package com.labuda.gdlunch.entity;
 
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -76,20 +77,14 @@ public class MenuItem {
         if (!(o instanceof MenuItem)) {
             return false;
         }
-
         MenuItem menuItem = (MenuItem) o;
-
-        if (Float.compare(menuItem.getPrice(), getPrice()) != 0) {
-            return false;
-        }
-        return getName().equals(menuItem.getName());
+        return Objects.equals(getName(), menuItem.getName()) &&
+                Objects.equals(getPrice(), menuItem.getPrice());
     }
 
     @Override
     public int hashCode() {
-        int result = getName().hashCode();
-        result = 31 * result + (getPrice() != +0.0f ? Float.floatToIntBits(getPrice()) : 0);
-        return result;
+        return Objects.hash(getName(), getPrice());
     }
 
     @Override

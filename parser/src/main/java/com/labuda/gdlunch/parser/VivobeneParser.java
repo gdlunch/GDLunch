@@ -3,7 +3,6 @@ package com.labuda.gdlunch.parser;
 import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.entity.MenuItem;
 import com.labuda.gdlunch.entity.Restaurant;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,10 +13,21 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Parses daily menu from Vivobene Gusto restaurant
+ */
 public class VivobeneParser extends AbstractRestaurantWebParser implements DailyParser {
 
+    /**
+     * Logger
+     */
     private final static Logger log = LoggerFactory.getLogger(VivobeneParser.class);
 
+    /**
+     * Constructor
+     *
+     * @param restaurant restaurant details
+     */
     public VivobeneParser(Restaurant restaurant) {
         super(restaurant);
     }
@@ -56,6 +66,12 @@ public class VivobeneParser extends AbstractRestaurantWebParser implements Daily
         return result;
     }
 
+    /**
+     * Helper method to parse price from menu item
+     *
+     * @param item item on the menu
+     * @return price as float
+     */
     private Float parsePrice(String item) {
         item = item.trim();
         Pattern p = Pattern.compile("([0-9]+)");

@@ -1,6 +1,7 @@
 package com.labuda.gdlunch.parser;
 
-import com.labuda.gdlunch.entity.WeeklyMenu;
+import com.labuda.gdlunch.entity.DailyMenu;
+import java.util.List;
 
 /**
  * Interface for parsing weekly menu
@@ -12,6 +13,6 @@ public interface WeeklyParser {
      *
      * @return parsed weekly menu
      */
-    WeeklyMenu parse();
+    List<DailyMenu> parse();
 
 }

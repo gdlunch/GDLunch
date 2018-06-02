@@ -3,12 +3,33 @@ package com.labuda.gdlunch.parser.entity;
 import com.labuda.gdlunch.entity.Restaurant;
 import java.util.List;
 
+/**
+ * Single entry in the parser configuration
+ */
 public class ParserDefinition {
 
+    /**
+     * Full class name of the specific parser (e.g. com.labuda.gdlunch.parser.MagicAIParser)
+     */
     private String parserClass;
+
+    /**
+     * Contains info about the parser refresh period, currently supported are "daily" and "weekly"
+     */
     private String refreshFrequency;
+
+    /**
+     * Contains the list of restaurants, that are parsed using this specified parser
+     */
     private List<Restaurant> restaurants;
 
+    /**
+     * Constructor
+     *
+     * @param parserClass parser class name (including the package)
+     * @param refreshFrequency refresh frequency
+     * @param restaurants list of restaurants
+     */
     public ParserDefinition(String parserClass, String refreshFrequency,
             List<Restaurant> restaurants) {
         this.parserClass = parserClass;

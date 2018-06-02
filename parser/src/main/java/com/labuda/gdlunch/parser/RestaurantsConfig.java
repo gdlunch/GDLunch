@@ -8,12 +8,26 @@ import java.io.FileReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Simple reader and parser of the "restaurants.json"
+ */
 public class RestaurantsConfig {
 
+    /**
+     * Logger
+     */
     private final static Logger log = LoggerFactory.getLogger(RestaurantsConfig.class);
 
+    /**
+     * Parser configuration
+     */
     private static ParserConfig parserConfig;
 
+    /**
+     * Obtains the parser configuration from the json
+     *
+     * @return parsed config
+     */
     public static ParserConfig obtain() {
         if (parserConfig != null) {
             return parserConfig;

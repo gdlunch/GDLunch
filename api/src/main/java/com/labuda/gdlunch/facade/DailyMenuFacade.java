@@ -22,7 +22,7 @@ public interface DailyMenuFacade {
     List<DailyMenuDTO> getAllMenus();
 
     /**
-     * Gets all daily menus with given date
+     * Gets all daily menus for given date
      *
      * @param date menu date
      * @return list of all daily menus with common date

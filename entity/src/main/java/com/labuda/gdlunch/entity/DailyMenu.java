@@ -3,6 +3,7 @@ package com.labuda.gdlunch.entity;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -79,30 +80,23 @@ public class DailyMenu {
         if (!(o instanceof DailyMenu)) {
             return false;
         }
-
         DailyMenu dailyMenu = (DailyMenu) o;
-
-        if (getDate() != null ? !getDate().equals(dailyMenu.getDate())
-                : dailyMenu.getDate() != null) {
-            return false;
-        }
-        return getMenu() != null ? getMenu().equals(dailyMenu.getMenu())
-                : dailyMenu.getMenu() == null;
+        return Objects.equals(getDate(), dailyMenu.getDate()) &&
+                Objects.equals(getRestaurant(), dailyMenu.getRestaurant()) &&
+                Objects.equals(getMenu(), dailyMenu.getMenu());
     }
 
     @Override
     public int hashCode() {
-        int result = getDate() != null ? getDate().hashCode() : 0;
-        result = 31 * result + (getMenu() != null ? getMenu().hashCode() : 0);
-        return result;
+        return Objects.hash(getDate(), getRestaurant(), getMenu());
     }
 
     @Override
     public String toString() {
         return "DailyMenu{" +
                 "date=" + date +
-                ", menu=" + menu +
                 ", restaurant=" + restaurant +
+                ", menu=" + menu +
                 '}' + System.lineSeparator();
     }
 }

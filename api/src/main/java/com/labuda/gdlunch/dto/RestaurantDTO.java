@@ -7,9 +7,24 @@ import java.util.Objects;
  */
 public class RestaurantDTO {
 
+    /**
+     * Database ID
+     */
     private Long id;
+
+    /**
+     * Restaurant name
+     */
     private String name;
+
+    /**
+     * URL to restaurant web page
+     */
     private String url;
+
+    /**
+     * URL for the parser, should contain a link with a daily menu
+     */
     private String parserUrl;
 
     public Long getId() {
@@ -49,18 +64,18 @@ public class RestaurantDTO {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof RestaurantDTO)) {
             return false;
         }
         RestaurantDTO that = (RestaurantDTO) o;
-        return Objects.equals(name, that.name) &&
-                Objects.equals(url, that.url) &&
-                Objects.equals(parserUrl, that.parserUrl);
+        return Objects.equals(getName(), that.getName()) &&
+                Objects.equals(getUrl(), that.getUrl()) &&
+                Objects.equals(getParserUrl(), that.getParserUrl());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, url, parserUrl);
+        return Objects.hash(getName(), getUrl(), getParserUrl());
     }
 
     @Override

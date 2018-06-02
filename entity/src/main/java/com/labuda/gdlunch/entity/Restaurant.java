@@ -6,20 +6,48 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Restaurant representing class
+ */
 @Entity
 public class Restaurant {
 
+    /**
+     * Database ID
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    /**
+     * Restaurant name
+     */
     private String name;
+
+    /**
+     * URL to restaurant web page
+     */
     private String url;
+
+    /**
+     * URL for the parser, this should contain a link for the page, where the menu is shown
+     */
     private String parserUrl;
 
+    /**
+     * Constructor
+     */
     public Restaurant() {
 
     }
 
+    /**
+     * Constructor
+     *
+     * @param name restaurant name
+     * @param url restaurant url
+     * @param parserUrl url for the parser
+     */
     public Restaurant(String name, String url, String parserUrl) {
         this.name = name;
         this.url = url;
@@ -63,18 +91,18 @@ public class Restaurant {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Restaurant)) {
             return false;
         }
         Restaurant that = (Restaurant) o;
-        return Objects.equals(name, that.name) &&
-                Objects.equals(url, that.url) &&
-                Objects.equals(parserUrl, that.parserUrl);
+        return Objects.equals(getName(), that.getName()) &&
+                Objects.equals(getUrl(), that.getUrl()) &&
+                Objects.equals(getParserUrl(), that.getParserUrl());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, url, parserUrl);
+        return Objects.hash(getName(), getUrl(), getParserUrl());
     }
 
     @Override

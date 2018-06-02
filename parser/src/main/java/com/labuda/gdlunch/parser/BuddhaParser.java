@@ -2,11 +2,10 @@ package com.labuda.gdlunch.parser;
 
 import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.entity.MenuItem;
-import com.labuda.gdlunch.entity.WeeklyMenu;
 import com.labuda.gdlunch.entity.Restaurant;
 import com.labuda.gdlunch.tools.DateUtils;
-import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -29,6 +28,7 @@ public class BuddhaParser extends AbstractRestaurantWebParser implements WeeklyP
 
     /**
      * Constructor
+     *
      * @param restaurant restaurant details
      */
     public BuddhaParser(Restaurant restaurant) {
@@ -36,8 +36,8 @@ public class BuddhaParser extends AbstractRestaurantWebParser implements WeeklyP
     }
 
     @Override
-    public WeeklyMenu parse() {
-        WeeklyMenu result = new WeeklyMenu();
+    public List<DailyMenu> parse() {
+        List<DailyMenu> result = new ArrayList<>();
 
         try {
             Document document = Jsoup.connect(restaurant.getParserUrl()).get();
@@ -53,14 +53,14 @@ public class BuddhaParser extends AbstractRestaurantWebParser implements WeeklyP
 
                 List<TextNode> day = days.get(i).textNodes();
                 for (TextNode node : day) {
-                    String nodeText = Parser.unescapeEntities(node.text(), false).replaceAll("(^\\h*)|(\\h*$)","");
+                    String nodeText = Parser.unescapeEntities(node.text(), false).replaceAll("(^\\h*)|(\\h*$)", "");
                     if (!nodeText.trim().isEmpty() && nodeText.startsWith("*")) {
                         dailyMenu.getMenu().add(
-                                new MenuItem(nodeText.substring(0, nodeText.length()-9), parsePrice(nodeText))
+                                new MenuItem(nodeText.substring(0, nodeText.length() - 9), parsePrice(nodeText))
                         );
                     }
                 }
-                result.addDailyMenu(dailyMenu);
+                result.add(dailyMenu);
             }
 
         } catch (Exception e) {

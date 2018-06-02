@@ -19,6 +19,9 @@ public class ApiKeys extends PropertiesConfig {
      */
     private final static PropertiesConfig INSTANCE = new ApiKeys();
 
+    /**
+     * Constructor
+     */
     private ApiKeys() {
         super();
         try {
@@ -29,6 +32,11 @@ public class ApiKeys extends PropertiesConfig {
         }
     }
 
+    /**
+     * Getter for the config
+     *
+     * @return instance of the config
+     */
     public static PropertiesConfig getInstance() {
         return INSTANCE;
     }
