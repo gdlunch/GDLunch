@@ -7,8 +7,6 @@ import com.labuda.gdlunch.tools.DateUtils;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -65,23 +63,5 @@ public class SabaidyParser extends AbstractRestaurantWebParser implements Weekly
         }
 
         return result;
-    }
-
-    /**
-     * Helper method to parse price from menu item
-     *
-     * @param item item on the menu
-     * @return price as float
-     */
-    private Float parsePrice(String item) {
-        item = item.trim();
-        Pattern p = Pattern.compile("([0-9]+)");
-        Matcher m = p.matcher(item);
-
-        if (m.find()) {
-            return Float.parseFloat(m.group());
-        } else {
-            return 0f;
-        }
     }
 }
