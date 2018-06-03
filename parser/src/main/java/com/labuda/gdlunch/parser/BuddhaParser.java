@@ -56,7 +56,10 @@ public class BuddhaParser extends AbstractRestaurantWebParser implements WeeklyP
                     String nodeText = Parser.unescapeEntities(node.text(), false).replaceAll("(^\\h*)|(\\h*$)", "");
                     if (!nodeText.trim().isEmpty() && nodeText.startsWith("*")) {
                         dailyMenu.getMenu().add(
-                                new MenuItem(nodeText.substring(0, nodeText.length() - 9), parsePrice(nodeText))
+                                new MenuItem(
+                                        nodeText.substring(0, nodeText.lastIndexOf(')') + 1),
+                                        parsePrice(nodeText.substring(nodeText.lastIndexOf(')') + 1))
+                                )
                         );
                     }
                 }
@@ -68,17 +71,5 @@ public class BuddhaParser extends AbstractRestaurantWebParser implements WeeklyP
         }
 
         return result;
-    }
-
-    /**
-     * Helper method to parse price from menu item
-     *
-     * @param item item on the menu
-     * @return price as float
-     */
-    private Float parsePrice(String item) {
-        item = item.trim();
-        String cropped = item.substring(item.length() - 8, item.length() - 5);
-        return Float.parseFloat(cropped.trim());
     }
 }

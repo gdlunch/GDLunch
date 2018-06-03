@@ -61,7 +61,7 @@ public class ZomatoParser extends AbstractRestaurantWebParser implements DailyPa
 
                 MenuItem menuItem = new MenuItem();
                 menuItem.setName(dish.getString("name").trim());
-                menuItem.setPrice(parsePriceWithKcAtTheEnd(dish.getString("price")));
+                menuItem.setPrice(parsePrice(dish.getString("price")));
 
                 result.getMenu().add(menuItem);
             }
@@ -70,26 +70,5 @@ public class ZomatoParser extends AbstractRestaurantWebParser implements DailyPa
         }
 
         return result;
-    }
-
-    /**
-     * Helper method to parse price from menu item with " Kc" ending
-     *
-     * @param item item on the menu
-     * @return price as float
-     */
-    protected Float parsePriceWithKcAtTheEnd(String item) {
-        if (item == null || item.isEmpty()) {
-            return 0.0f;
-        }
-
-        item = item.trim();
-        String cropped = "";
-
-        if (item.length() >= 2) {
-            cropped = item.substring(0, item.length() - 3);
-        }
-
-        return Float.parseFloat(cropped.trim());
     }
 }

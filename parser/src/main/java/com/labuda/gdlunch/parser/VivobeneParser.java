@@ -4,8 +4,6 @@ import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.entity.MenuItem;
 import com.labuda.gdlunch.entity.Restaurant;
 import java.time.LocalDate;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -64,29 +62,5 @@ public class VivobeneParser extends AbstractRestaurantWebParser implements Daily
         }
 
         return result;
-    }
-
-    /**
-     * Helper method to parse price from menu item
-     *
-     * @param item item on the menu
-     * @return price as float
-     */
-    private Float parsePrice(String item) {
-        item = item.trim();
-        Pattern p = Pattern.compile("([0-9]+)");
-        Matcher m = p.matcher(item);
-
-        if (m.find()) {
-            float price = -1f;
-            try {
-                price = Float.parseFloat(m.group());
-            } catch (Exception e) {
-                log.error("Couldn't parse the price correctly from = " + m.group(), e);
-            }
-            return price;
-        } else {
-            return 0f;
-        }
     }
 }
