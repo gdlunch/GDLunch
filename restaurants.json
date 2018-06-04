@@ -33,6 +33,11 @@
           "name": "Miluj Brambor",
           "url": "https://www.facebook.com/Bistro-Love-Patatas-142644642822366/",
           "parserUrl": "https://developers.zomato.com/api/v2.1/dailymenu?res_id=18390235"
+        },
+        {
+          "name": "Zelená kočka",
+          "url": "http://www.zelenakocka.cz/index2.php",
+          "parserUrl": "https://developers.zomato.com/api/v2.1/dailymenu?res_id=16505909"
         }
       ]
     },
