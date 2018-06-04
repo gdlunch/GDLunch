@@ -106,6 +106,17 @@
           "parserUrl": "https://www.nasvabce.cz/index.php?option=com_phocamenu"
         }
       ]
+    },
+    {
+      "parserClass": "com.labuda.gdlunch.parser.SiamThaiParser",
+      "refreshFrequency": "weekly",
+      "restaurants": [
+        {
+          "name": "Siam Thai",
+          "url": "http://www.siamthai.cz/",
+          "parserUrl": "http://www.siamthai.cz/tydenni-menu/"
+        }
+      ]
     }
   ]
 }
