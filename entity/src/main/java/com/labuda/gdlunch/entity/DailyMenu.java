@@ -44,6 +44,26 @@ public class DailyMenu {
     @OneToMany(cascade = CascadeType.ALL)
     private List<MenuItem> menu = new ArrayList<>();
 
+    /**
+     * Constructor
+     */
+    public DailyMenu() {
+
+    }
+
+    /**
+     * Constructor
+     *
+     * @param date daily menu date
+     * @param restaurant restaurant details
+     * @param menu list of menu items
+     */
+    public DailyMenu(LocalDate date, Restaurant restaurant, List<MenuItem> menu) {
+        this.date = date;
+        this.restaurant = restaurant;
+        this.menu = menu;
+    }
+
     public Long getId() {
         return id;
     }
