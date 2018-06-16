@@ -18,4 +18,13 @@ public interface DailyMenuRepository extends JpaRepository<DailyMenu, Long> {
      */
     List<DailyMenu> findByDate(Temporal date);
 
+    /**
+     * Finds a daily menu by date and restaurant name
+     *
+     * @param restaurantName restaurant name
+     * @param date date
+     * @return daily menu for given restaurant
+     */
+    DailyMenu findDailyMenuByRestaurantNameAndDate(String restaurantName, Temporal date);
+
 }

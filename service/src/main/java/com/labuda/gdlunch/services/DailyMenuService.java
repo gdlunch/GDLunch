@@ -47,4 +47,13 @@ public interface DailyMenuService {
      * @return list of all daily menus that have common date
      */
     List<DailyMenu> findAllByDate(LocalDate date);
+
+    /**
+     * Retrieves daily menu from the database that has the specified restaurant name and date
+     *
+     * @param restaurantName restaurant name
+     * @param date date
+     * @return daily menu from the database
+     */
+    DailyMenu findDailyMenuByRestaurantNameAndDate(String restaurantName, LocalDate date);
 }
