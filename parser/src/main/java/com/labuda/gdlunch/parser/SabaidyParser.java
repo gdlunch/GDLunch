@@ -7,6 +7,8 @@ import com.labuda.gdlunch.tools.DateUtils;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -52,8 +54,13 @@ public class SabaidyParser extends AbstractRestaurantWebParser implements Weekly
                 Elements courses = mainCourses.get(i).select("li");
                 for (Element course : courses) {
                     String item = course.text();
-                    dailyMenu.getMenu().add(new MenuItem(item.substring(0, item.length() - 5),
-                            parsePrice(course.text())));
+                    dailyMenu.getMenu().add(
+                            new MenuItem(
+                                    item.substring(0, findIndexOfFirstDigit(item)),
+                                    parsePrice(course.text()
+                                    )
+                            )
+                    );
                 }
 
                 result.add(dailyMenu);
@@ -63,5 +70,22 @@ public class SabaidyParser extends AbstractRestaurantWebParser implements Weekly
         }
 
         return result;
+    }
+
+    /**
+     * Finds index of the first digit in the string
+     *
+     * @param item some string
+     * @return index of first digit, if no digit was found, it returns the string length
+     */
+    private int findIndexOfFirstDigit(String item) {
+        Pattern numberPattern = Pattern.compile("([0-9]+)");
+        Matcher numberMatcher = numberPattern.matcher(item);
+
+        if (numberMatcher.find()) {
+            return numberMatcher.start();
+        } else {
+            return item.length();
+        }
     }
 }
