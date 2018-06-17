@@ -30,9 +30,9 @@ public class DailyMenusJob {
     private final static Logger log = LoggerFactory.getLogger(DailyMenusJob.class);
 
     /**
-     * CRON trigger for every day at 8 AM
+     * CRON trigger for every day at 10 AM
      */
-    private final static String CRON_TRIGGER = "0 0 8 * * *";
+    private final static String CRON_TRIGGER = "0 0 10 * * *";
 
     /**
      * Daily menu facade so that we can save parsed daily menus
