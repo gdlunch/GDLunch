@@ -31,9 +31,9 @@ public class WeeklyMenusJob {
     private final static Logger log = LoggerFactory.getLogger(WeeklyMenusJob.class);
 
     /**
-     * CRON trigger for every monday at 8 AM
+     * CRON trigger for every monday at 10 AM
      */
-    private final static String CRON_TRIGGER = "0 0 8 * * Mon";
+    private final static String CRON_TRIGGER = "0 0 10 * * Mon";
 
     /**
      * Daily menu facade so that we can save parsed daily menus
