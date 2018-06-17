@@ -1,6 +1,7 @@
 package com.labuda.gdlunch.entity;
 
 import java.util.Objects;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class MenuItem {
     /**
      * Name of the item
      */
+    @Column(length = 1000)
     private String name;
 
     /**
