@@ -5,6 +5,7 @@ import com.labuda.gdlunch.facade.DailyMenuFacade;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +30,14 @@ public class MainController {
         );
 
         model.addAttribute("dailyMenus", dailyMenus);
+        model.addAttribute("currentDate", LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.YYYY")));
+        return "index";
+    }
+
+    @RequestMapping(value = "/lucky", method = RequestMethod.GET)
+    public String lucky(Model model) {
+        List<DailyMenuDTO> allMenus = dailyMenuFacade.getAllMenusForDate(LocalDate.now());
+        model.addAttribute("dailyMenus", allMenus.get(new Random().nextInt(allMenus.size())));
         model.addAttribute("currentDate", LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.YYYY")));
         return "index";
     }
