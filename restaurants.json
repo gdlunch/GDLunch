@@ -127,6 +127,17 @@
           "parserUrl": "http://www.siamthai.cz/tydenni-menu/"
         }
       ]
+    },
+    {
+      "parserClass": "com.labuda.gdlunch.parser.VarnaParser",
+      "refreshFrequency": "daily",
+      "restaurants": [
+        {
+          "name": "Varna",
+          "url": "http://www.restauracevarna.cz/",
+          "parserUrl": "http://www.restauracevarna.cz/denni-menu/"
+        }
+      ]
     }
   ]
 }
