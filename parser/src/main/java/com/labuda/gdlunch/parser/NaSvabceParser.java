@@ -36,7 +36,7 @@ public class NaSvabceParser extends AbstractRestaurantWebParser implements Weekl
         List<DailyMenu> result = new ArrayList<>();
 
         try {
-            Document document = Jsoup.connect(restaurant.getParserUrl()).get();
+            Document document = Jsoup.connect(restaurant.getParserUrl()).validateTLSCertificates(false).get();
 
             LocalDate mondayOfCurrentWeek = DateUtils.getMondayOfCurrentWeek();
 
@@ -77,12 +77,18 @@ public class NaSvabceParser extends AbstractRestaurantWebParser implements Weekl
                 course = course.substring(course.indexOf(':') + 1);
             }
 
+            String priceString = tableRows.get(i).select(".pmprice").text();
+            if (priceString == null || priceString.isEmpty()) {
+                priceString = course.substring(course.lastIndexOf('/') + 1);
+            }
+
+            // Trim the price
+            course = course.substring(0, course.lastIndexOf('/') > 0 ? course.lastIndexOf('/') + 1 : 0);
+
             dailyMenuItems.add(
                     new MenuItem(
                             course,
-                            parsePrice(
-                                    tableRows.get(i).select(".pmprice").text()
-                            )
+                            parsePrice(priceString)
                     )
             );
         }
