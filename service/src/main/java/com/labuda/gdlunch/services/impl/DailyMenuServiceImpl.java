@@ -73,9 +73,4 @@ public class DailyMenuServiceImpl implements DailyMenuService {
     public List<DailyMenu> findAllByDate(LocalDate date) {
         return dailyMenuRepository.findByDate(date);
     }
-
-    @Override
-    public DailyMenu findDailyMenuByRestaurantNameAndDate(String restaurantName, LocalDate date) {
-        return dailyMenuRepository.findDailyMenuByRestaurantNameAndDate(restaurantName, date);
-    }
 }

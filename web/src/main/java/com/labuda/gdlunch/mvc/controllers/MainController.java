@@ -1,11 +1,16 @@
 package com.labuda.gdlunch.mvc.controllers;
 
-import com.labuda.gdlunch.dto.DailyMenuDTO;
-import com.labuda.gdlunch.facade.DailyMenuFacade;
+import static com.labuda.gdlunch.mvc.controllers.ControllerUtils.getCurrentMenu;
+
+import com.labuda.gdlunch.dto.RestaurantDTO;
+import com.labuda.gdlunch.dto.RestaurantWithCurrentMenuDTO;
+import com.labuda.gdlunch.facade.RestaurantFacade;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,28 +24,42 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MainController {
 
     @Autowired
-    private DailyMenuFacade dailyMenuFacade;
+    private RestaurantFacade restaurantFacade;
 
+    /**
+     * Random generator
+     */
     private final Random random = new Random();
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
-        List<DailyMenuDTO> dailyMenus = dailyMenuFacade.getAllMenusForDate(LocalDate.now());
+        List<RestaurantDTO> allRestaurants = restaurantFacade.getAllRestaurants();
 
-        dailyMenus.sort(
-                (o1, o2) -> o1.getRestaurant().getName().compareToIgnoreCase(o2.getRestaurant().getName())
+        allRestaurants.sort(
+                (r1, r2) -> r1.getName().compareToIgnoreCase(r2.getName())
         );
 
-        model.addAttribute("dailyMenus", dailyMenus);
+        List<RestaurantWithCurrentMenuDTO> restaurantsWithCurrentMenu = allRestaurants.stream()
+                .map(ControllerUtils::getCurrentMenu).collect(Collectors.toList());
+
+        model.addAttribute("restaurants", restaurantsWithCurrentMenu);
         model.addAttribute("currentDate", LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.YYYY")));
         return "index";
     }
 
     @RequestMapping(value = "/lucky", method = RequestMethod.GET)
     public String lucky(Model model) {
-        List<DailyMenuDTO> allMenus = dailyMenuFacade.getAllMenusForDate(LocalDate.now());
-        model.addAttribute("dailyMenus", allMenus.get(random.nextInt(allMenus.size())));
+        List<RestaurantDTO> allRestaurants = restaurantFacade.getAllRestaurants();
+
+        model.addAttribute("restaurants",
+                Collections.singletonList(
+                        getCurrentMenu(
+                                allRestaurants.get(random.nextInt(allRestaurants.size()))
+                        )
+                )
+        );
         model.addAttribute("currentDate", LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.YYYY")));
         return "index";
     }
+
 }

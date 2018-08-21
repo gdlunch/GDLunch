@@ -21,11 +21,6 @@ public class DailyMenuDTO {
     private LocalDate date;
 
     /**
-     * Restaurant
-     */
-    private RestaurantDTO restaurant;
-
-    /**
      * List of courses on the menu on specific day
      */
     private List<MenuItemDTO> menu = new ArrayList<>();
@@ -36,14 +31,6 @@ public class DailyMenuDTO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public RestaurantDTO getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(RestaurantDTO restaurant) {
-        this.restaurant = restaurant;
     }
 
     public LocalDate getDate() {
@@ -72,13 +59,12 @@ public class DailyMenuDTO {
         }
         DailyMenuDTO that = (DailyMenuDTO) o;
         return Objects.equals(getDate(), that.getDate()) &&
-                Objects.equals(getRestaurant(), that.getRestaurant()) &&
                 Objects.equals(getMenu(), that.getMenu());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getDate(), getRestaurant(), getMenu());
+        return Objects.hash(getDate(), getMenu());
     }
 
     @Override
@@ -86,7 +72,6 @@ public class DailyMenuDTO {
         return "DailyMenuDTO{" +
                 "id=" + id +
                 ", date=" + date +
-                ", restaurant=" + restaurant +
                 ", menu=" + menu +
                 '}';
     }

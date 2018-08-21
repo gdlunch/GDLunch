@@ -28,13 +28,4 @@ public interface DailyMenuFacade {
      * @return list of all daily menus with common date
      */
     List<DailyMenuDTO> getAllMenusForDate(LocalDate date);
-
-    /**
-     * Returns daily menu for given restaurant and date
-     *
-     * @param restaurantName restaurant name
-     * @param date date
-     * @return found daily menu
-     */
-    DailyMenuDTO findDailyMenuByRestaurantNameAndDate(String restaurantName, LocalDate date);
 }

@@ -33,7 +33,6 @@ public class CattaniParser extends AbstractRestaurantWebParser implements DailyP
     @Override
     public DailyMenu parse() {
         DailyMenu result = new DailyMenu();
-        result.setRestaurant(restaurant);
         result.setDate(LocalDate.now());
 
         try {

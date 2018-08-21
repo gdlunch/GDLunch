@@ -1,6 +1,7 @@
 package com.labuda.gdlunch.services;
 
 import com.labuda.gdlunch.entity.Restaurant;
+import java.util.List;
 
 /**
  * Restaurant service interface
@@ -31,4 +32,18 @@ public interface RestaurantService {
      */
     Restaurant update(Restaurant restaurant);
 
+    /**
+     * Retrieves all restaurants from the database
+     *
+     * @return list of all restaurants
+     */
+    List<Restaurant> findAll();
+
+    /**
+     * Finds restaurant with matching name
+     *
+     * @param name restaurant name
+     * @return restaurant with the provided name
+     */
+    Restaurant findByName(String name);
 }

@@ -3,6 +3,7 @@ package com.labuda.gdlunch.services.impl;
 import com.labuda.gdlunch.entity.Restaurant;
 import com.labuda.gdlunch.repository.RestaurantRepository;
 import com.labuda.gdlunch.services.RestaurantService;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import org.slf4j.Logger;
@@ -62,4 +63,13 @@ public class RestaurantServiceImpl implements RestaurantService {
         return restaurant;
     }
 
+    @Override
+    public List<Restaurant> findAll() {
+        return restaurantRepository.findAll();
+    }
+
+    @Override
+    public Restaurant findByName(String name) {
+        return restaurantRepository.findByName(name);
+    }
 }

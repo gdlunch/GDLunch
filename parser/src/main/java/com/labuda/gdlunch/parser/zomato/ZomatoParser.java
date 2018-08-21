@@ -49,7 +49,6 @@ public class ZomatoParser extends AbstractRestaurantWebParser implements DailyPa
     public DailyMenu parse() {
         DailyMenu result = new DailyMenu();
         result.setDate(LocalDate.now());
-        result.setRestaurant(restaurant);
 
         try {
             JSONObject dailyMenu = getDailyMenu();

@@ -54,7 +54,6 @@ public class USeminaruParser extends AbstractRestaurantWebParser implements Week
                 result.add(
                         new DailyMenu(
                                 mondayOfCurrentWeek.plusDays(i),
-                                restaurant,
                                 getDailyMenus(
                                         // Every fourth item is a day headline
                                         listOfMenus.subList(1 + 4 * i, 4 + 4 * i)

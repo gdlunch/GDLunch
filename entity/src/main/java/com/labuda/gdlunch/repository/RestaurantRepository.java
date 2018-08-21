@@ -8,4 +8,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
+    /**
+     * Finds restaurant by name
+     *
+     * @param name restaurant name
+     * @return restaurant with matching name
+     */
+    Restaurant findByName(String name);
+
 }

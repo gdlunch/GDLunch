@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -33,15 +33,9 @@ public class DailyMenu {
     private LocalDate date;
 
     /**
-     * Restaurant
-     */
-    @OneToOne(targetEntity = Restaurant.class, cascade = CascadeType.ALL)
-    private Restaurant restaurant;
-
-    /**
      * List of courses on the menu on specific day
      */
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<MenuItem> menu = new ArrayList<>();
 
     /**
@@ -55,12 +49,10 @@ public class DailyMenu {
      * Constructor
      *
      * @param date daily menu date
-     * @param restaurant restaurant details
      * @param menu list of menu items
      */
-    public DailyMenu(LocalDate date, Restaurant restaurant, List<MenuItem> menu) {
+    public DailyMenu(LocalDate date, List<MenuItem> menu) {
         this.date = date;
-        this.restaurant = restaurant;
         this.menu = menu;
     }
 
@@ -74,14 +66,6 @@ public class DailyMenu {
 
     public void setDate(LocalDate date) {
         this.date = date;
-    }
-
-    public Restaurant getRestaurant() {
-        return restaurant;
-    }
-
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
     }
 
     public List<MenuItem> getMenu() {
@@ -102,20 +86,18 @@ public class DailyMenu {
         }
         DailyMenu dailyMenu = (DailyMenu) o;
         return Objects.equals(getDate(), dailyMenu.getDate()) &&
-                Objects.equals(getRestaurant(), dailyMenu.getRestaurant()) &&
                 Objects.equals(getMenu(), dailyMenu.getMenu());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getDate(), getRestaurant(), getMenu());
+        return Objects.hash(getDate(), getMenu());
     }
 
     @Override
     public String toString() {
         return "DailyMenu{" +
                 "date=" + date +
-                ", restaurant=" + restaurant +
                 ", menu=" + menu +
                 '}' + System.lineSeparator();
     }

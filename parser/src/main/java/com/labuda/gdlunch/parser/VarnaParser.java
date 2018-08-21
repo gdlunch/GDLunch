@@ -34,7 +34,6 @@ public class VarnaParser extends AbstractRestaurantWebParser implements DailyPar
     @Override
     public DailyMenu parse() {
         DailyMenu result = new DailyMenu();
-        result.setRestaurant(restaurant);
         result.setDate(LocalDate.now());
 
         try {
