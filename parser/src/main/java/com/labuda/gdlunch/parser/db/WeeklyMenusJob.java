@@ -1,9 +1,11 @@
 package com.labuda.gdlunch.parser.db;
 
 import com.labuda.gdlunch.dto.DailyMenuDTO;
+import com.labuda.gdlunch.dto.RestaurantDTO;
 import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.entity.Restaurant;
 import com.labuda.gdlunch.facade.DailyMenuFacade;
+import com.labuda.gdlunch.facade.RestaurantFacade;
 import com.labuda.gdlunch.parser.RestaurantsConfig;
 import com.labuda.gdlunch.parser.WeeklyParser;
 import com.labuda.gdlunch.parser.entity.ParserConfig;
@@ -36,10 +38,10 @@ public class WeeklyMenusJob {
     private final static String CRON_TRIGGER = "0 0 10 * * Mon";
 
     /**
-     * Daily menu facade so that we can save parsed daily menus
+     * Restaurant facade
      */
     @Autowired
-    private DailyMenuFacade dailyMenuFacade;
+    private RestaurantFacade restaurantFacade;
 
     /**
      * Mapping service
@@ -70,11 +72,10 @@ public class WeeklyMenusJob {
                     Object instance = constructor.newInstance(restaurant);
                     WeeklyParser parser = (WeeklyParser) instance;
 
-                    for (DailyMenu dailyMenu : parser.parse()) {
-                        dailyMenuFacade.addDailyMenu(
-                                beanMappingService.mapTo(dailyMenu, DailyMenuDTO.class)
-                        );
-                    }
+                    restaurant.getDailyMenus().addAll(parser.parse());
+                    restaurantFacade.add(
+                            beanMappingService.mapTo(restaurant, RestaurantDTO.class)
+                    );
                 } catch (InstantiationException | IllegalAccessException | ClassNotFoundException
                         | NoSuchMethodException | InvocationTargetException e) {
                     log.error("Parsing of the daily menu for " + restaurant + " has failed", e);

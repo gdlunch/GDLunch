@@ -48,7 +48,6 @@ public class ForkysParser extends AbstractRestaurantWebParser implements WeeklyP
                 result.add(
                         new DailyMenu(
                                 mondayOfCurrentWeek.plusDays(i),
-                                restaurant,
                                 menus.get(i).select(".item").stream().map(course ->
                                         new MenuItem(
                                                 course.select(".title").text(),

@@ -1,5 +1,7 @@
 package com.labuda.gdlunch.dto;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -26,6 +28,11 @@ public class RestaurantDTO {
      * URL for the parser, should contain a link with a daily menu
      */
     private String parserUrl;
+
+    /**
+     * Daily menus available for the restaurant
+     */
+    private List<DailyMenuDTO> dailyMenus = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -59,6 +66,14 @@ public class RestaurantDTO {
         this.parserUrl = parserUrl;
     }
 
+    public List<DailyMenuDTO> getDailyMenus() {
+        return dailyMenus;
+    }
+
+    public void setDailyMenus(List<DailyMenuDTO> dailyMenus) {
+        this.dailyMenus = dailyMenus;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -70,7 +85,8 @@ public class RestaurantDTO {
         RestaurantDTO that = (RestaurantDTO) o;
         return Objects.equals(getName(), that.getName()) &&
                 Objects.equals(getUrl(), that.getUrl()) &&
-                Objects.equals(getParserUrl(), that.getParserUrl());
+                Objects.equals(getParserUrl(), that.getParserUrl()) &&
+                Objects.equals(getDailyMenus(), that.getDailyMenus());
     }
 
     @Override
@@ -85,6 +101,7 @@ public class RestaurantDTO {
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
                 ", parserUrl='" + parserUrl + '\'' +
+                ", dailyMenus='" + dailyMenus + '\'' +
                 '}';
     }
 }

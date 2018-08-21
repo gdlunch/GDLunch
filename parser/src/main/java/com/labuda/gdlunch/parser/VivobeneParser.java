@@ -33,7 +33,6 @@ public class VivobeneParser extends AbstractRestaurantWebParser implements Daily
     @Override
     public DailyMenu parse() {
         DailyMenu result = new DailyMenu();
-        result.setRestaurant(restaurant);
         result.setDate(LocalDate.now());
 
         try {

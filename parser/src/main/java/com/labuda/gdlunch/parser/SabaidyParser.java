@@ -50,7 +50,6 @@ public class SabaidyParser extends AbstractRestaurantWebParser implements Weekly
             for (int i = 0; i < mainCourses.size(); i++) {
                 DailyMenu dailyMenu = new DailyMenu();
                 dailyMenu.setDate(mondayOfCurrentWeek.plusDays(i));
-                dailyMenu.setRestaurant(restaurant);
                 dailyMenu.getMenu().add(new MenuItem(soups.get(i).text(), 0.0f));
 
                 Elements courses = mainCourses.get(i).select("li");

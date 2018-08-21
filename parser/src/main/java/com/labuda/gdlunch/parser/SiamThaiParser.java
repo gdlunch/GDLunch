@@ -48,7 +48,6 @@ public class SiamThaiParser extends AbstractRestaurantWebParser implements Weekl
             for (int i = 0; i < 5; i++) {
                 DailyMenu dailyMenu = new DailyMenu();
                 dailyMenu.setDate(mondayOfCurrentWeek.plusDays(i));
-                dailyMenu.setRestaurant(restaurant);
 
                 Elements originalParagraphs = listOfMenus
                         .get(i)

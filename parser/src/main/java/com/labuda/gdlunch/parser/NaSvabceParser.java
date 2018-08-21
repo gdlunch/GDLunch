@@ -45,7 +45,6 @@ public class NaSvabceParser extends AbstractRestaurantWebParser implements Weekl
                 result.add(
                         new DailyMenu(
                                 mondayOfCurrentWeek.plusDays(i),
-                                restaurant,
                                 getListOfMenuItems(menus.get(i))
                         )
                 );

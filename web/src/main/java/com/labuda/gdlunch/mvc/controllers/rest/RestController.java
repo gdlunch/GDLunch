@@ -1,9 +1,11 @@
 package com.labuda.gdlunch.mvc.controllers.rest;
 
 import com.labuda.gdlunch.dto.DailyMenuDTO;
-import com.labuda.gdlunch.dto.RestaurantDTO;
+import com.labuda.gdlunch.dto.RestaurantWithCurrentMenuDTO;
 import com.labuda.gdlunch.entity.Restaurant;
 import com.labuda.gdlunch.facade.DailyMenuFacade;
+import com.labuda.gdlunch.facade.RestaurantFacade;
+import com.labuda.gdlunch.mvc.controllers.ControllerUtils;
 import com.labuda.gdlunch.mvc.controllers.rest.entities.RestaurantRequest;
 import com.labuda.gdlunch.parser.RestaurantsConfig;
 import com.labuda.gdlunch.parser.entity.ParserDefinition;
@@ -11,6 +13,7 @@ import java.text.Collator;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletResponse;
@@ -40,6 +43,12 @@ public class RestController {
      */
     @Autowired
     private DailyMenuFacade dailyMenuFacade;
+
+    /**
+     * Facade to ascces the restaurants
+     */
+    @Autowired
+    private RestaurantFacade restaurantFacade;
 
     // TODO this should be changed to list the restaurants from DB, but it requires parser overhaul and restaurants are stored multiple times in the DB
 
@@ -72,7 +81,8 @@ public class RestController {
      * @return 204 No Content if no restaurant matching the request is found, 200 with menu otherwise
      */
     @RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json")
-    public DailyMenuDTO getMenu(@RequestBody RestaurantRequest restaurantRequest, HttpServletResponse response) {
+    public RestaurantWithCurrentMenuDTO getMenu(@RequestBody RestaurantRequest restaurantRequest,
+            HttpServletResponse response) {
         List<Restaurant> restaurantsFromConfig = getRestaurantsFromConfig();
 
         // Collator set to level to ignore diacritics and other national symbols
@@ -95,7 +105,7 @@ public class RestController {
         // When no matches are found return 204 and empty daily menu
         if (restaurantsMatchingRequest.size() == 0) {
             response.setStatus(HttpServletResponse.SC_NO_CONTENT);
-            return new DailyMenuDTO();
+            return new RestaurantWithCurrentMenuDTO();
         }
 
         // Return daily menu for the first match
@@ -104,18 +114,19 @@ public class RestController {
 
         // TODO Remove the try/catch if you fix the restaurant name fetching from the database, the mapping exception won't happen anymore
         try {
-            return dailyMenuFacade.findDailyMenuByRestaurantNameAndDate(firstMatch.getName(), LocalDate.now());
+            return ControllerUtils.getCurrentMenu(
+                    restaurantFacade.getRestaurantByName(firstMatch.getName()));
         } catch (MappingException e) {
             log.error("Mapping has failed", e);
-            RestaurantDTO restaurantDTO = new RestaurantDTO();
-            restaurantDTO.setName(firstMatch.getName());
-            restaurantDTO.setUrl(firstMatch.getUrl());
-
             DailyMenuDTO dailyMenuDTO = new DailyMenuDTO();
             dailyMenuDTO.setDate(LocalDate.now());
-            dailyMenuDTO.setRestaurant(restaurantDTO);
 
-            return dailyMenuDTO;
+            RestaurantWithCurrentMenuDTO restaurantWithCurrentMenuDTO = new RestaurantWithCurrentMenuDTO();
+            restaurantWithCurrentMenuDTO.setName(firstMatch.getName());
+            restaurantWithCurrentMenuDTO.setUrl(firstMatch.getUrl());
+            restaurantWithCurrentMenuDTO.setDailyMenu(dailyMenuDTO);
+
+            return restaurantWithCurrentMenuDTO;
         }
     }
 
@@ -147,7 +158,7 @@ public class RestController {
     private List<Restaurant> getRestaurantsFromConfig() {
         List<Restaurant> restaurantsFromConfig = new ArrayList<>();
 
-        for (ParserDefinition parserDefinition : RestaurantsConfig.obtain().getConfig()) {
+        for (ParserDefinition parserDefinition : Objects.requireNonNull(RestaurantsConfig.obtain()).getConfig()) {
             restaurantsFromConfig.addAll(parserDefinition.getRestaurants());
         }
 
