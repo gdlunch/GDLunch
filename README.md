@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/Dominick1993/GD-lunch-Brno.svg?branch=master)](https://travis-ci.org/Dominick1993/GD-lunch-Brno)
 
-# GD Lunch - Daily lunch menu aggregator
+# GDLunch - Daily lunch menu aggregator
 
 This project is supposed to aggregate daily menus from nearby restaurants into single web page.
 
