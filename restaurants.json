@@ -148,6 +148,17 @@
           "parserUrl": "http://www.restauracevarna.cz/denni-menu/"
         }
       ]
+    },
+    {
+      "parserClass": "com.labuda.gdlunch.parser.ForkysParser",
+      "refreshFrequency": "weekly",
+      "restaurants": [
+        {
+          "name": "Forky's",
+          "url": "http://www.forkys.eu/",
+          "parserUrl": "http://www.forkys.eu/poledni-menu/poledni-menu-brno/"
+        }
+      ]
     }
   ]
 }
