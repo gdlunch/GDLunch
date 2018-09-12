@@ -21,6 +21,8 @@ public class MainController {
     @Autowired
     private DailyMenuFacade dailyMenuFacade;
 
+    private final Random random = new Random();
+
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
         List<DailyMenuDTO> dailyMenus = dailyMenuFacade.getAllMenusForDate(LocalDate.now());
@@ -37,7 +39,7 @@ public class MainController {
     @RequestMapping(value = "/lucky", method = RequestMethod.GET)
     public String lucky(Model model) {
         List<DailyMenuDTO> allMenus = dailyMenuFacade.getAllMenusForDate(LocalDate.now());
-        model.addAttribute("dailyMenus", allMenus.get(new Random().nextInt(allMenus.size())));
+        model.addAttribute("dailyMenus", allMenus.get(random.nextInt(allMenus.size())));
         model.addAttribute("currentDate", LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.YYYY")));
         return "index";
     }

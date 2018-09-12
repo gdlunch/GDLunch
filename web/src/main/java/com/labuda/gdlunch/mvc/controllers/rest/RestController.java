@@ -33,6 +33,8 @@ public class RestController {
      */
     private final static Logger log = LoggerFactory.getLogger(RestController.class);
 
+    private final Random random = new Random();
+
     /**
      * Facade to access the daily menus
      */
@@ -59,7 +61,7 @@ public class RestController {
     @RequestMapping(value = "/lucky", method = RequestMethod.GET, produces = "application/json")
     public DailyMenuDTO lucky() {
         List<DailyMenuDTO> allMenus = dailyMenuFacade.getAllMenusForDate(LocalDate.now());
-        return allMenus.get(new Random().nextInt(allMenus.size()));
+        return allMenus.get(random.nextInt(allMenus.size()));
     }
 
     /**
