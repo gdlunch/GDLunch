@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -40,9 +41,8 @@ public class SabaidyParser extends AbstractRestaurantWebParser implements Weekly
         try {
             Document document = Jsoup.connect(restaurant.getParserUrl()).get();
             Elements elements = document.select(".uk-grid li");
-            Elements soups = elements.select("p em");
-            // First soup-like element contains info about pricing instead of soup
-            soups.remove(0);
+            List<Element> soups = elements.select("p").stream().filter(soup -> soup.children().is("em"))
+                    .collect(Collectors.toList());
             Elements mainCourses = elements.select("p ~ ol");
 
             LocalDate mondayOfCurrentWeek = DateUtils.getMondayOfCurrentWeek();
