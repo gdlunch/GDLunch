@@ -1,4 +1,5 @@
 {
+  "city": "Brno",
   "config": [
     {
       "parserClass": "com.labuda.gdlunch.parser.zomato.ZomatoParser",
@@ -62,7 +63,7 @@
       ]
     },
     {
-      "parserClass": "com.labuda.gdlunch.parser.BuddhaParser",
+      "parserClass": "com.labuda.gdlunch.parser.brno.BuddhaParser",
       "refreshFrequency": "weekly",
       "restaurants": [
         {
@@ -73,7 +74,7 @@
       ]
     },
     {
-      "parserClass": "com.labuda.gdlunch.parser.SabaidyParser",
+      "parserClass": "com.labuda.gdlunch.parser.brno.SabaidyParser",
       "refreshFrequency": "weekly",
       "restaurants": [
         {
@@ -84,7 +85,7 @@
       ]
     },
     {
-      "parserClass": "com.labuda.gdlunch.parser.VivobeneParser",
+      "parserClass": "com.labuda.gdlunch.parser.brno.VivobeneParser",
       "refreshFrequency": "daily",
       "restaurants": [
         {
@@ -95,7 +96,7 @@
       ]
     },
     {
-      "parserClass": "com.labuda.gdlunch.parser.CattaniParser",
+      "parserClass": "com.labuda.gdlunch.parser.brno.CattaniParser",
       "refreshFrequency": "daily",
       "restaurants": [
         {
@@ -106,7 +107,7 @@
       ]
     },
     {
-      "parserClass": "com.labuda.gdlunch.parser.USeminaruParser",
+      "parserClass": "com.labuda.gdlunch.parser.brno.USeminaruParser",
       "refreshFrequency": "weekly",
       "restaurants": [
         {
@@ -117,7 +118,7 @@
       ]
     },
     {
-      "parserClass": "com.labuda.gdlunch.parser.NaSvabceParser",
+      "parserClass": "com.labuda.gdlunch.parser.brno.NaSvabceParser",
       "refreshFrequency": "weekly",
       "restaurants": [
         {
@@ -128,7 +129,7 @@
       ]
     },
     {
-      "parserClass": "com.labuda.gdlunch.parser.SiamThaiParser",
+      "parserClass": "com.labuda.gdlunch.parser.brno.SiamThaiParser",
       "refreshFrequency": "weekly",
       "restaurants": [
         {
@@ -139,7 +140,7 @@
       ]
     },
     {
-      "parserClass": "com.labuda.gdlunch.parser.VarnaParser",
+      "parserClass": "com.labuda.gdlunch.parser.brno.VarnaParser",
       "refreshFrequency": "daily",
       "restaurants": [
         {
@@ -150,7 +151,7 @@
       ]
     },
     {
-      "parserClass": "com.labuda.gdlunch.parser.ForkysParser",
+      "parserClass": "com.labuda.gdlunch.parser.brno.ForkysParser",
       "refreshFrequency": "weekly",
       "restaurants": [
         {

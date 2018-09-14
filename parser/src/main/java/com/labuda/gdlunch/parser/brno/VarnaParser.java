@@ -1,8 +1,10 @@
-package com.labuda.gdlunch.parser;
+package com.labuda.gdlunch.parser.brno;
 
 import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.entity.MenuItem;
 import com.labuda.gdlunch.entity.Restaurant;
+import com.labuda.gdlunch.parser.AbstractRestaurantWebParser;
+import com.labuda.gdlunch.parser.DailyParser;
 import java.time.LocalDate;
 import java.util.List;
 import org.jsoup.Jsoup;
