@@ -7,6 +7,7 @@ group 'com.labuda'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 springBoot {
     mainClass = "com.labuda.gdlunch.mvc.WebMain"
