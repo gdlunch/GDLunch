@@ -1,24 +1,14 @@
 plugins {
-    id 'java'
-}
-
-group 'com.labuda'
-version '1.0-SNAPSHOT'
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-repositories {
-    mavenCentral()
+    id 'java-library'
 }
 
 dependencies {
-    compile project(':api')
-    compile project(':entity')
+    implementation project(':api')
+    implementation project(':entity')
 
-    compile group: 'javax.annotation', name: 'javax.annotation-api', version: '1.3.2'
-    compile group: 'net.sf.dozer', name: 'dozer', version: '5.5.1'
-    compile group: 'io.craftsman', name: 'dozer-jdk8-support', version: '1.0.3'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.1.1.RELEASE'
+    implementation 'net.sf.dozer:dozer:5.5.1'
+    implementation 'io.craftsman:dozer-jdk8-support:1.0.3'
 
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation 'junit:junit:4.12'
 }

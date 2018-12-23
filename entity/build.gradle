@@ -1,19 +1,9 @@
 plugins {
-    id 'java'
-}
-
-group 'com.labuda'
-version '1.0-SNAPSHOT'
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
-
-repositories {
-    mavenCentral()
+    id 'java-library'
 }
 
 dependencies {
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.5.8.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.1.1.RELEASE'
 
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testImplementation 'junit:junit:4.12'
 }

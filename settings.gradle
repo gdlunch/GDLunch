@@ -1,4 +1,4 @@
-rootProject.name = 'gd_lunch_brno'
+rootProject.name = 'GDLunch'
 
 include 'web'
 include 'parser'
