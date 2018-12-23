@@ -37,7 +37,7 @@ public class MenuItemServiceImpl implements MenuItemService {
     @Override
     @Transactional
     public MenuItem delete(MenuItem menuItem) {
-        MenuItem deletedMenuItem = menuItemRepository.findOne(menuItem.getId());
+        MenuItem deletedMenuItem = menuItemRepository.getOne(menuItem.getId());
 
         if (deletedMenuItem == null) {
             log.error("MenuItem that should have been deleted was not found:" + deletedMenuItem);
@@ -51,7 +51,7 @@ public class MenuItemServiceImpl implements MenuItemService {
     @Override
     @Transactional
     public MenuItem update(MenuItem menuItem) {
-        MenuItem updatedMenuItem = menuItemRepository.findOne(menuItem.getId());
+        MenuItem updatedMenuItem = menuItemRepository.getOne(menuItem.getId());
 
         if (updatedMenuItem == null) {
             log.error("MenuItem that should have been updated was not found:" + updatedMenuItem);

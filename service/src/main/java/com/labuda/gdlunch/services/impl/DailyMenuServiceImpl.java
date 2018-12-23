@@ -39,7 +39,7 @@ public class DailyMenuServiceImpl implements DailyMenuService {
     @Override
     @Transactional
     public DailyMenu delete(DailyMenu dailyMenu) {
-        DailyMenu deletedDailyMenu = dailyMenuRepository.findOne(dailyMenu.getId());
+        DailyMenu deletedDailyMenu = dailyMenuRepository.getOne(dailyMenu.getId());
 
         if (deletedDailyMenu == null) {
             log.error("DailyMenu that should have been deleted was not found:" + dailyMenu);
@@ -53,7 +53,7 @@ public class DailyMenuServiceImpl implements DailyMenuService {
     @Override
     @Transactional
     public DailyMenu update(DailyMenu dailyMenu) {
-        DailyMenu updatedDailyMenu = dailyMenuRepository.findOne(dailyMenu.getId());
+        DailyMenu updatedDailyMenu = dailyMenuRepository.getOne(dailyMenu.getId());
 
         if (updatedDailyMenu == null) {
             log.error("DailyMenu that should have been updated was not found:" + dailyMenu);

@@ -37,7 +37,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     @Transactional
     public Restaurant delete(Restaurant restaurant) {
-        Restaurant deletedRestaurant = restaurantRepository.findOne(restaurant.getId());
+        Restaurant deletedRestaurant = restaurantRepository.getOne(restaurant.getId());
 
         if (deletedRestaurant == null) {
             log.error("Restaurant that should have been deleted was not found:" + deletedRestaurant);
@@ -51,7 +51,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     @Transactional
     public Restaurant update(Restaurant restaurant) {
-        Restaurant updatedRestaurant = restaurantRepository.findOne(restaurant.getId());
+        Restaurant updatedRestaurant = restaurantRepository.getOne(restaurant.getId());
 
         if (updatedRestaurant == null) {
             log.error("Restaurant that should have been updated was not found:" + updatedRestaurant);
