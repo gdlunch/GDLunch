@@ -11,6 +11,10 @@
 
     <title>GoodData Lunch Brno</title>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="../static/js/themeSwitcher.js" th:src="@{/js/themeSwitcher.js}"></script>
+
     <link rel="icon" href="../static/img/favicon.png" th:href="@{/img/favicon.png}"/>
     <link rel="apple-touch-icon-precomposed" href="../static/img/favicon.png" th:href="@{/img/favicon.png}"/>
 
@@ -20,6 +24,7 @@
 
     <!-- Custom styles for this template -->
     <link href="../static/css/starter.css" th:href="@{/css/starter.css}" rel="stylesheet"/>
+    <link href="../static/css/dark.css" th:href="@{/css/dark.css}" rel="stylesheet"/>
   </head>
 
   <body>
@@ -37,6 +42,11 @@
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="/vouchers">Meal voucher calculator</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" id="switchTheme" href="#">Switch theme</a>
           </li>
         </ul>
       </div>
@@ -96,12 +106,10 @@
     </main>
 
     <footer class="footer">
-      <p>&copy; GoodData Lunch Brno, Dominik Labuda 2018-2019 <a href="https://github.com/Dominick1993/GD-lunch-Brno"><img src="../static/img/GitHub_Logo.png" th:src="@{/img/GitHub_Logo.png}" height="20px" style="vertical-align: middle;"/> </a> </p>
+      <p>&copy; GoodData Lunch Brno, Dominik Labuda 2018-2019 <a href="https://github.com/Dominick1993/GD-lunch-Brno"><img class="gh_logo" src="../static/img/GitHub_Logo.png" th:src="@{/img/GitHub_Logo.png}" height="20px" style="vertical-align: middle;"/> </a> </p>
     </footer>
 
     <!-- Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
             integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
