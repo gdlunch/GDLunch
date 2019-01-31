@@ -2,7 +2,7 @@ $(document).ready(function(){
 
   var switchElement = $('#switchTheme');
 
-  var currentTheme = localStorage.getItem('theme');
+  var currentTheme = localStorage.getItem('theme') || 'default';
   if (currentTheme === 'default') {
     document.documentElement.setAttribute('data-theme','default');
     switchElement.text('Dark theme');
@@ -16,7 +16,7 @@ $(document).ready(function(){
   });
 
   function switchTheme() {
-    var currentTheme = localStorage.getItem('theme');
+    var currentTheme = localStorage.getItem('theme') || 'default';
     if (currentTheme === 'default') {
       document.documentElement.setAttribute('data-theme','dark');
       switchElement.text('Light theme');
