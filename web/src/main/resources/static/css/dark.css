@@ -1,0 +1,38 @@
+[data-theme=dark] body {
+  background-color: #333333;
+}
+
+[data-theme=dark] main {
+  color: #bababa;
+  padding-top: 1rem;
+  padding-bottom: 1.5rem;
+}
+[data-theme=dark] nav[data-toggle="toc"] .nav-link.active,
+[data-theme=dark] nav[data-toggle="toc"] .nav-link.active:hover,
+[data-theme=dark] nav[data-toggle="toc"] .nav-link.active:focus {
+  color: dodgerblue;
+  border-left: 2px solid dodgerblue;
+}
+
+[data-theme=dark] nav[data-toggle="toc"] .nav > li > a:hover,
+[data-theme=dark] nav[data-toggle="toc"] .nav > li > a:focus {
+  color: dodgerblue;
+  border-left: 1px solid dodgerblue;
+}
+
+[data-theme=dark] .bg-dark {
+  background-color: black!important;
+}
+
+[data-theme=dark] .footer {
+  padding-right: 1rem;
+  padding-left: 1rem;
+  padding-top: 1.5rem;
+  color: #bababa;
+  border-top: .05rem solid #e5e5e5;
+  text-align: center;
+}
+
+[data-theme=dark] .gh_logo {
+  filter: invert(100%);
+}
