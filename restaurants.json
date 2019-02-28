@@ -58,6 +58,11 @@
           "name": "Lokál U Caipla",
           "url": "http://lokal-ucaipla.ambi.cz/cz/",
           "parserUrl": "https://developers.zomato.com/api/v2.1/dailymenu?res_id=17807425"
+        },
+        {
+          "name": "Štatl",
+          "url": "http://statlbrno.cz/",
+          "parserUrl": "https://developers.zomato.com/api/v2.1/dailymenu?res_id=18494615"
         }
       ]
     },
