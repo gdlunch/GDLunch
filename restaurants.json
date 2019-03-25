@@ -164,6 +164,17 @@
           "parserUrl": "http://www.forkys.eu/poledni-menu/poledni-menu-brno/"
         }
       ]
+    },
+    {
+      "parserClass": "com.labuda.gdlunch.parser.ZlataLodParser",
+      "refreshFrequency": "daily",
+      "restaurants": [
+        {
+          "name": "Zlatá loď",
+          "url": "http://www.zlatalod.com/",
+          "parserUrl": "http://www.zlatalod.com/"
+        }
+      ]
     }
   ]
 }
