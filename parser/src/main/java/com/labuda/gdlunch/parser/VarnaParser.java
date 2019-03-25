@@ -4,7 +4,6 @@ import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.entity.MenuItem;
 import com.labuda.gdlunch.entity.Restaurant;
 import java.time.LocalDate;
-import java.util.List;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -39,12 +38,25 @@ public class VarnaParser extends AbstractRestaurantWebParser implements DailyPar
 
         try {
             Document document = Jsoup.connect(restaurant.getParserUrl()).get();
-            List<Element> dailyOffer = document.select("table.restaurace-menu").subList(0, 7);
+
+            Element firstH2 = document.select("article.clanek").select("h2").first();
+            Elements h2Siblings = firstH2.siblingElements();
+
+            Elements dailyOffer = new Elements();
+            for(int i = 0; i < h2Siblings.size(); i++) {
+                if (h2Siblings.get(i).tagName().equals("h2")) {
+                    break;
+                } else {
+                    dailyOffer.add(h2Siblings.get(i));
+                }
+            }
+
+            dailyOffer = dailyOffer.select("table.restaurace-menu");
 
             // First one is soup without price
             result.getMenu().add(new MenuItem(dailyOffer.get(0).select("td").text(), 0f));
 
-            for (int i = 1; i < 7; i++) {
+            for (int i = 1; i < dailyOffer.size(); i++) {
                 Elements names = dailyOffer.get(i).select(".nazev");
                 Elements prices = dailyOffer.get(i).select(".cena");
 
