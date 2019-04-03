@@ -40,11 +40,6 @@
           "parserUrl": "https://developers.zomato.com/api/v2.1/dailymenu?res_id=18390235"
         },
         {
-          "name": "Zelená kočka",
-          "url": "http://www.zelenakocka.cz/index2.php",
-          "parserUrl": "https://developers.zomato.com/api/v2.1/dailymenu?res_id=16505909"
-        },
-        {
           "name": "Casa Fuego",
           "url": "http://www.casafuego.cz/",
           "parserUrl": "https://developers.zomato.com/api/v2.1/dailymenu?res_id=18607663"
