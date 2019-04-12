@@ -22,3 +22,9 @@ nav[data-toggle='toc'] {
 }
 
 .gh_logo{}
+
+select {
+  background-color: #ffffff;
+  border: 0;
+  outline: 0;
+}

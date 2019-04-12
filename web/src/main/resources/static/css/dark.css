@@ -36,3 +36,8 @@
 [data-theme=dark] .gh_logo {
   filter: invert(100%);
 }
+
+[data-theme=dark] select {
+  background-color: #333333;
+  color: #bababa;
+}
