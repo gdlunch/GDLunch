@@ -57,13 +57,22 @@
 
         <div class="row">
           <div class="col">
-            <h1 class="cover-heading" th:text="${currentDate}" align="center">01.01.1970</h1>
+            <h1 class="cover-heading" align="center">
+              <form role="form" id="changeDate" th:action=@{/} method="get">
+                <select name="date" onchange="this.form.submit()">
+                  <option th:each="date, stat : ${dates}"
+                        th:value="${stat.index}"
+                        th:text="${date}"
+                        th:selected="${currentDateIndex == stat.index}">Date</option>
+                </select>
+              </form>
+            </h1>
           </div>
         </div>
 
         <div class="row">
           <div class="col" align="center">
-            <a href="/lucky"><button type="button" class="btn btn-outline-secondary">I'm feeling lucky</button></a>
+            <a href="/lucky"><button type="button" class="btn btn-outline-secondary" th:disabled="${luckyDisabled}">I'm feeling lucky</button></a>
           </div>
         </div>
 
