@@ -26,6 +26,7 @@
 
   <body>
 
+  <audio id="player" src=""></audio>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <a class="navbar-brand" href="/">GDLunch</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -87,10 +88,14 @@
                   <th scope="col">Dish</th>
                   <th scope="col">Price</th>
                   <th scope="col"></th>
+                  <th scope="col"></th>
                 </tr>
                 <tr th:each="dish : ${dailyMenu.menu}">
                   <td th:text="${dish.name}" align="left">Name</td>
                   <td th:text="${dish.price}" align="right">Price</td>
+                  <td align="right"><a class="btn btn-lg" role="button" th:onclick="'play(\'' + ${dish.translatedName.hashCode()} + '\')'">
+                    <img src="../static/img/megaphone.png" class="gh_logo" th:src="@{/img/megaphone.png}" style="width: 32px; height: auto;"/>
+                  </a></td>
                   <td align="right"><a tabindex="0" class="btn btn-lg" role="button" data-toggle="popover" data-trigger="focus" title="English translation" data-content="content" th:data-content="${dish.translatedName}">
                     <img src="../static/img/translate.png" class="gh_logo" th:src="@{/img/translate.png}" style="width: 32px; height: auto;"/>
                   </a></td>
@@ -119,6 +124,14 @@
       $('.popover-dismiss').popover({
         trigger: 'focus'
       })
+      function play(file)
+      {
+        var player = document.getElementById('player');
+        player.pause();
+        player.src = file + '.wav';
+        player.load();
+        player.play();
+      }
     </script>
 
   </body>

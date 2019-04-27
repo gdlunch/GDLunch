@@ -4,6 +4,7 @@ import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.entity.MenuItem;
 import com.labuda.gdlunch.entity.Restaurant;
 import com.labuda.gdlunch.parser.utils.IbmTranslatorClient;
+import com.labuda.gdlunch.parser.utils.IbmTtsClient;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,6 +30,11 @@ public abstract class AbstractRestaurantWebParser {
      * Translator client
      */
     private final IbmTranslatorClient translatorClient = new IbmTranslatorClient();
+
+    /**
+     * TTS client
+     */
+    private final IbmTtsClient ttsClient = new IbmTtsClient();
 
     /**
      * Constructor
@@ -82,6 +88,10 @@ public abstract class AbstractRestaurantWebParser {
      * @param dailyMenu daily menu
      */
     protected void addTranslations(DailyMenu dailyMenu) {
-        dailyMenu.getMenu().forEach(menuItem -> menuItem.setTranslatedName(translatorClient.translate(menuItem.getName())));
+        dailyMenu.getMenu().forEach(menuItem -> {
+            String translatedName = translatorClient.translate(menuItem.getName());
+            ttsClient.tts(translatedName);
+            menuItem.setTranslatedName(translatedName);
+        });
     }
 }
