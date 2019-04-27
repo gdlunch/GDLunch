@@ -13,6 +13,7 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.11.3'
     implementation 'org.json:json:20171018'
     implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.ibm.watson:ibm-watson:7.0.0'
 
     testImplementation 'junit:junit:4.12'
 }

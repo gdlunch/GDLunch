@@ -78,6 +78,7 @@ public class ZlataLodParser extends AbstractRestaurantWebParser implements Daily
             log.error("Parsing failed", e);
         }
 
+        addTranslations(result);
         return result;
     }
 }

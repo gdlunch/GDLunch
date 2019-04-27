@@ -90,6 +90,7 @@ public class SiamThaiParser extends AbstractRestaurantWebParser implements Weekl
             log.error("Parsing failed", e);
         }
 
+        addTranslations(result);
         return result;
     }
 }

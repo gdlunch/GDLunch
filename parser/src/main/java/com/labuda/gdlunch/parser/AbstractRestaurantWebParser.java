@@ -1,6 +1,10 @@
 package com.labuda.gdlunch.parser;
 
+import com.labuda.gdlunch.entity.DailyMenu;
+import com.labuda.gdlunch.entity.MenuItem;
 import com.labuda.gdlunch.entity.Restaurant;
+import com.labuda.gdlunch.parser.utils.IbmTranslatorClient;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.slf4j.Logger;
@@ -20,6 +24,11 @@ public abstract class AbstractRestaurantWebParser {
      * Restaurant
      */
     protected final Restaurant restaurant;
+
+    /**
+     * Translator client
+     */
+    private final IbmTranslatorClient translatorClient = new IbmTranslatorClient();
 
     /**
      * Constructor
@@ -58,5 +67,21 @@ public abstract class AbstractRestaurantWebParser {
         } else {
             return 0f;
         }
+    }
+
+    /**
+     * Adds a translation of menu item
+     * @param dailyMenus list of daily menus
+     */
+    protected void addTranslations(List<DailyMenu> dailyMenus) {
+        dailyMenus.forEach(this::addTranslations);
+    }
+
+    /**
+     * Adds a translation of menu item
+     * @param dailyMenu daily menu
+     */
+    protected void addTranslations(DailyMenu dailyMenu) {
+        dailyMenu.getMenu().forEach(menuItem -> menuItem.setTranslatedName(translatorClient.translate(menuItem.getName())));
     }
 }

@@ -69,6 +69,7 @@ public class ZomatoParser extends AbstractRestaurantWebParser implements DailyPa
             log.error("Parsing of: " + restaurant + "has failed.", e);
         }
 
+        addTranslations(result);
         return result;
     }
 }

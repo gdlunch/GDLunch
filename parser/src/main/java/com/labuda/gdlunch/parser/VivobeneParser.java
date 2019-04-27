@@ -61,6 +61,7 @@ public class VivobeneParser extends AbstractRestaurantWebParser implements Daily
             log.error("Parsing failed", e);
         }
 
+        addTranslations(result);
         return result;
     }
 }

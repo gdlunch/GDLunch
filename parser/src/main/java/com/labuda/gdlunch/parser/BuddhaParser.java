@@ -70,6 +70,7 @@ public class BuddhaParser extends AbstractRestaurantWebParser implements WeeklyP
             log.error("Parsing using the BuddhaParser has failed", e);
         }
 
+        addTranslations(result);
         return result;
     }
 }

@@ -17,6 +17,8 @@ public class MenuItemDTO {
      */
     private String name;
 
+    private String translatedName;
+
     /**
      * Price
      */
@@ -36,6 +38,14 @@ public class MenuItemDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTranslatedName() {
+        return translatedName;
+    }
+
+    public void setTranslatedName(String translatedName) {
+        this.translatedName = translatedName;
     }
 
     public Float getPrice() {
@@ -69,7 +79,8 @@ public class MenuItemDTO {
         return "MenuItemDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", price=" + price +
+                ", price=" + price + '\'' +
+                ", translatedName=" + translatedName +
                 '}';
     }
 }

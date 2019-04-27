@@ -61,6 +61,7 @@ public class ForkysParser extends AbstractRestaurantWebParser implements WeeklyP
             log.error("Parsing failed", e);
         }
 
+        addTranslations(result);
         return result;
     }
 }

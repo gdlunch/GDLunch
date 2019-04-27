@@ -29,6 +29,12 @@ public class MenuItem {
     private String name;
 
     /**
+     * Name of the item
+     */
+    @Column(length = 1000)
+    private String translatedName;
+
+    /**
      * Price
      */
     private Float price;
@@ -63,6 +69,14 @@ public class MenuItem {
         this.name = name;
     }
 
+    public String getTranslatedName() {
+        return translatedName;
+    }
+
+    public void setTranslatedName(String translatedName) {
+        this.translatedName = translatedName;
+    }
+
     public Float getPrice() {
         return price;
     }
@@ -93,7 +107,8 @@ public class MenuItem {
     public String toString() {
         return "MenuItem{" +
                 "name='" + name + '\'' +
-                ", price=" + price +
+                ", price=" + price + '\'' +
+                ", translatedName=" + translatedName +
                 '}';
     }
 }

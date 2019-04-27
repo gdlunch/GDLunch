@@ -66,6 +66,7 @@ public class USeminaruParser extends AbstractRestaurantWebParser implements Week
             log.error("Parsing failed", e);
         }
 
+        addTranslations(result);
         return result;
     }
 

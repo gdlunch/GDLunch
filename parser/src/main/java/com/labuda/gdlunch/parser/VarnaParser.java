@@ -4,6 +4,7 @@ import com.labuda.gdlunch.entity.DailyMenu;
 import com.labuda.gdlunch.entity.MenuItem;
 import com.labuda.gdlunch.entity.Restaurant;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -71,6 +72,7 @@ public class VarnaParser extends AbstractRestaurantWebParser implements DailyPar
             log.error("Parsing failed", e);
         }
 
+        addTranslations(result);
         return result;
     }
 }
