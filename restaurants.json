@@ -117,17 +117,6 @@
       ]
     },
     {
-      "parserClass": "com.labuda.gdlunch.parser.NaSvabceParser",
-      "refreshFrequency": "weekly",
-      "restaurants": [
-        {
-          "name": "Na Švábce",
-          "url": "https://www.nasvabce.cz/index.php",
-          "parserUrl": "https://www.nasvabce.cz/index.php?option=com_phocamenu"
-        }
-      ]
-    },
-    {
       "parserClass": "com.labuda.gdlunch.parser.SiamThaiParser",
       "refreshFrequency": "weekly",
       "restaurants": [
