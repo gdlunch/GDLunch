@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Dominick1993/GDLunch.svg?branch=master)](https://travis-ci.org/Dominick1993/GDLunch)
+[![Build Status](https://travis-ci.org/gdlunch/GDLunch.svg?branch=master)](https://travis-ci.org/gdlunch/GDLunch)
 
 # GDLunch - Daily lunch menu aggregator
 
