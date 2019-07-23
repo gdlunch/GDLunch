@@ -1,17 +1,39 @@
 plugins {
     id 'java'
     id 'io.spring.dependency-management' version "1.0.6.RELEASE"
+    id 'org.springframework.boot' version '2.1.1.RELEASE'
 }
 
-allprojects {
-    sourceCompatibility = 11
-    targetCompatibility = 11
+sourceCompatibility = 11
+targetCompatibility = 11
 
-    group = 'com.labuda'
-    version = '1.0-SNAPSHOT'
+group = 'com.labuda'
+version = '1.0-SNAPSHOT'
 
-    repositories {
-        jcenter()
-        mavenCentral()
-    }
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+bootJar {
+    mainClassName = 'com.labuda.gdlunch.WebMain'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'mysql:mysql-connector-java:8.0.13'
+    implementation 'com.h2database:h2:1.4.197'
+    implementation 'net.sf.dozer:dozer:5.5.1'
+    implementation 'io.craftsman:dozer-jdk8-support:1.0.3'
+    implementation 'com.github.dpaukov:combinatoricslib3:3.3.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.9.0'
+    implementation 'org.jsoup:jsoup:1.11.3'
+    implementation 'org.json:json:20171018'
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'org.slf4j:slf4j-api:1.7.25'
+    implementation 'ch.qos.logback:logback-core:1.2.3'
+
+    testImplementation 'junit:junit:4.12'
 }

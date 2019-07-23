@@ -1,9 +1,1 @@
 rootProject.name = 'GDLunch'
-
-include 'web'
-include 'parser'
-include 'tools'
-include 'entity'
-include 'api'
-include 'service'
-
