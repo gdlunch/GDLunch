@@ -41,37 +41,20 @@ public class ZlataLodParser extends AbstractRestaurantWebParser implements Daily
 
         try {
             Document document = Jsoup.connect(restaurant.getParserUrl()).get();
-            Element menu = document.selectFirst(".menu-box menu");
-            String menuHtml = menu.html();
-
-            Element soups = Jsoup
-                    .parseBodyFragment(menuHtml.substring(menuHtml.indexOf("POLÉVKY"), menuHtml.indexOf("<ol>")))
-                    .body();
-            Elements mainCourses = menu.select("li");
-            Element theRest = Jsoup.parseBodyFragment(menuHtml.substring(menuHtml.indexOf("</ol>"))).body();
-
-            List<TextNode> soupsTexts = soups.textNodes().stream().filter(textNode -> !textNode.isBlank())
+            Elements items = document.selectFirst(".menu-one-day").select("td");
+            List<String> names = items.stream()
+                    .filter(element -> items.indexOf(element) % 2 == 0)
+                    .map(Element::text)
                     .collect(Collectors.toList());
-            Elements soupsPrices = soups.select("em");
-            for (int i = 1; i < soupsTexts.size(); i++) {
-                result.getMenu().add(new MenuItem(
-                        soupsTexts.get(i).text(),
-                        parsePrice(soupsPrices.get(i - 1).text())
-                ));
-            }
-
-            mainCourses.forEach(course -> {
-                float price = parsePrice(course.selectFirst("em").text());
-                result.getMenu().add(new MenuItem(course.textNodes().get(0).text(), price));
-            });
-
-            List<TextNode> otherDishes = theRest.textNodes().stream().filter(textNode -> !textNode.isBlank())
+            List<Float> prices = items.stream()
+                    .filter(element -> items.indexOf(element) % 2 == 1)
+                    .map(element -> parsePrice(element.text()))
                     .collect(Collectors.toList());
-            Elements otherPrices = theRest.select("em");
-            for (int i = 0; i < otherDishes.size(); i++) {
+
+            for (int i = 0; i < names.size(); i++) {
                 result.getMenu().add(new MenuItem(
-                        otherDishes.get(i).text(),
-                        parsePrice(otherPrices.get(i).text())
+                        names.get(i),
+                        prices.get(i)
                 ));
             }
         } catch (Exception e) {
