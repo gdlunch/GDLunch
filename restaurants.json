@@ -40,11 +40,6 @@
           "parserUrl": "https://developers.zomato.com/api/v2.1/dailymenu?res_id=18390235"
         },
         {
-          "name": "Casa Fuego",
-          "url": "http://www.casafuego.cz/",
-          "parserUrl": "https://developers.zomato.com/api/v2.1/dailymenu?res_id=18607663"
-        },
-        {
           "name": "Siwa",
           "url": "http://www.siwaorient.cz/",
           "parserUrl": "https://developers.zomato.com/api/v2.1/dailymenu?res_id=18578705"
@@ -162,6 +157,17 @@
           "name": "Zlatá loď",
           "url": "http://www.zlatalod.com/",
           "parserUrl": "http://www.zlatalod.com/"
+        }
+      ]
+    },
+    {
+      "parserClass": "com.labuda.gdlunch.parser.CasaFuegoParser",
+      "refreshFrequency": "weekly",
+      "restaurants": [
+        {
+          "name": "Casa Fuego",
+          "url": "http://www.casafuego.cz/",
+          "parserUrl": "http://www.casafuego.cz/index.php?option=com_content&view=article&id=27"
         }
       ]
     }
