@@ -7,7 +7,6 @@ import com.labuda.gdlunch.util.DateUtils;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -39,26 +38,17 @@ public class USeminaruParser extends AbstractRestaurantWebParser implements Week
         List<DailyMenu> result = new ArrayList<>();
 
         try {
-            Document document = Jsoup.connect(restaurant.getParserUrl()).get();
-
             LocalDate mondayOfCurrentWeek = DateUtils.getMondayOfCurrentWeek();
 
-            List<Element> listOfMenus = document
-                    .select(".meni1 tr")
-                    .stream()
-                    .filter(Element::hasText)
-                    .collect(Collectors.toList());
+            Document document = Jsoup.connect(restaurant.getParserUrl()).get();
+            Elements days = document.select("table[id]");
 
-            // Parse each day
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < days.size(); i++) {
                 result.add(
                         new DailyMenu(
                                 mondayOfCurrentWeek.plusDays(i),
                                 restaurant,
-                                getDailyMenus(
-                                        // Every fourth item is a day headline
-                                        listOfMenus.subList(1 + 4 * i, 4 + 4 * i)
-                                )
+                                getDailyMenus(days.get(i).select("td"))
                         )
                 );
             }
@@ -78,15 +68,26 @@ public class USeminaruParser extends AbstractRestaurantWebParser implements Week
     private List<MenuItem> getDailyMenus(List<Element> dailyMenuElements) {
         List<MenuItem> dailyMenuItems = new ArrayList<>();
 
-        for (Element element : dailyMenuElements) {
-            Elements tableCells = element.select("td");
-
+        String soup = dailyMenuElements.get(0).text();
+        if (!soup.isBlank()) {
             dailyMenuItems.add(
                     new MenuItem(
-                            tableCells.get(1).text(),
-                            parsePrice(tableCells.get(2).text())
+                            soup,
+                            0f
                     )
             );
+        }
+
+        for (int j = 2; j < dailyMenuElements.size() - 1; j += 3) {
+            String course = dailyMenuElements.get(j).text();
+            if (!course.isBlank()) {
+                dailyMenuItems.add(
+                        new MenuItem(
+                                course,
+                                parsePrice(dailyMenuElements.get(j + 1).text())
+                        )
+                );
+            }
         }
 
         return dailyMenuItems;
