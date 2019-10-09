@@ -170,6 +170,17 @@
           "parserUrl": "http://www.casafuego.cz/index.php?option=com_content&view=article&id=27"
         }
       ]
+    },
+    {
+      "parserClass": "gdlunch.parser.BistroFranzParser",
+      "refreshFrequency": "daily",
+      "restaurants": [
+        {
+          "name": "Bistro Franz",
+          "url": "https://www.bistrofranz.cz/cs/",
+          "parserUrl": "https://www.bistrofranz.cz/cs/novinky/aktualni-nabidka-jidel"
+        }
+      ]
     }
   ]
 }
