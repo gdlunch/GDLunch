@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 /**
  * Main starting class
  */
-@SpringBootApplication(scanBasePackages = "com.labuda.gdlunch")
+@SpringBootApplication(scanBasePackages = {"com.labuda.gdlunch", "gdlunch"})
 @EnableJpaRepositories("com.labuda.gdlunch")
 @EntityScan("com.labuda.gdlunch")
 @EnableScheduling
