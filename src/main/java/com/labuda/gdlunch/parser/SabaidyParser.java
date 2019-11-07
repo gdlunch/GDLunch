@@ -41,8 +41,9 @@ public class SabaidyParser extends AbstractRestaurantWebParser implements Weekly
         try {
             Document document = Jsoup.connect(restaurant.getParserUrl()).get();
             Elements elements = document.select(".uk-grid li");
-            List<Element> soups = elements.select("p").stream().filter(soup -> soup.children().is("em"))
-                    .collect(Collectors.toList());
+            List<Element> soups = elements.select("p + ol").stream().map(
+                    node -> node.previousElementSibling()
+            ).collect(Collectors.toList());
             Elements mainCourses = elements.select("p ~ ol");
 
             LocalDate mondayOfCurrentWeek = DateUtils.getMondayOfCurrentWeek();
