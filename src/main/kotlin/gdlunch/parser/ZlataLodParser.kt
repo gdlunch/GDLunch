@@ -10,9 +10,9 @@ import org.jsoup.Jsoup
 import java.time.LocalDate
 
 /**
- * Parses daily menu from Bistro Franz restaurant
+ * Parses daily menu from Zlata Lod restaurant
  */
-class BistroFranzParser(restaurant: Restaurant) : AbstractRestaurantWebParser(restaurant), DailyParser {
+class ZlataLodParser(restaurant: Restaurant) : AbstractRestaurantWebParser(restaurant), DailyParser {
 
     val logger = KotlinLogging.logger { }
 
@@ -22,18 +22,11 @@ class BistroFranzParser(restaurant: Restaurant) : AbstractRestaurantWebParser(re
         result.date = LocalDate.now()
 
         val document = Jsoup.connect(restaurant.parserUrl).get()
-        document.select(".obedmenu .tabnab.polevka .radj .mnam").forEach {
-            result.menu.add(MenuItem(it.ownText(), 0f))
-        }
-        document.select(".obedmenu .tabnab.jidlo .radj").forEach {
-            result.menu.add(
-                    MenuItem(
-                            it.selectFirst(".mnam").ownText(),
-                            parsePrice(it.selectFirst(".cena").ownText()
-                            )
-                    )
-            )
-        }
+        val items = document.selectFirst(".menu-one-day").select("td")
+        val names = items.filterIndexed { index, _ -> index % 2 == 0 }.map { it.text() }
+        val prices = items.filterIndexed { index, _ -> index % 2 == 1 }.map { parsePrice(it.text()) }
+
+        names.forEachIndexed { index, name -> result.menu.add(MenuItem(name, prices[index])) }
 
         return result
     }

@@ -150,7 +150,7 @@
       ]
     },
     {
-      "parserClass": "com.labuda.gdlunch.parser.ZlataLodParser",
+      "parserClass": "gdlunch.parser.ZlataLodParser",
       "refreshFrequency": "daily",
       "restaurants": [
         {
