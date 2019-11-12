@@ -1,7 +1,7 @@
 {
   "config": [
     {
-      "parserClass": "com.labuda.gdlunch.parser.zomato.ZomatoParser",
+      "parserClass": "gdlunch.parser.zomato.ZomatoParser",
       "refreshFrequency": "daily",
       "restaurants": [
         {
